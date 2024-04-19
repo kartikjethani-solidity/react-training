@@ -2,6 +2,8 @@ import { useState } from "react";
 import "./App.css";
 import { Profile } from "./components/profile";
 import { User } from "./types/user";
+import { H1 } from "./components/h1";
+import { UserListing } from "./components/user-listing";
 
 function App() {
   const signIn = () => {
@@ -18,6 +20,17 @@ function App() {
     setLoggedIn(user.isLoggedIn);
     setUser(user);
   };
+
+  const users = [
+    { isLoggedIn: true, name: "Kartik", id: 1, email: "kj@gmail.com" },
+    {
+      isLoggedIn: false,
+      name: "Shivansh",
+      id: 1,
+      email: "shivansh@gmail.com",
+    },
+    { isLoggedIn: true, name: "Kamya", id: 1, email: "kamya@gmail.com" },
+  ];
   // STATE
   const [isLoggedIn, setLoggedIn] = useState<boolean>(false);
   const [user, setUser] = useState<User>();
@@ -52,6 +65,13 @@ function App() {
           state: "UP",
         }}
       /> */}
+
+      <div style={{ marginTop: "100px" }}>
+        <H1 heading="List of all users" />
+        <div style={{ marginTop: "20px" }}>
+          <UserListing users={users} />
+        </div>
+      </div>
     </div>
   );
 }

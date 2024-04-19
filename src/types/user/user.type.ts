@@ -5,4 +5,5 @@ export type User = {
   email: string;
   id: number;
   address?: Address;
+  isLoggedIn?: boolean;
 };
