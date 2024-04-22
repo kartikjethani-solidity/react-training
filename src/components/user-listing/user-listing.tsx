@@ -22,6 +22,8 @@ export const UserListing = () => {
       {users.map((user) => {
         return <Profile email={user.email} name={user.name} id={user.id} />;
       })}
+
+      {/* <UserDetails id{1} /> */}
     </>
   );
 };
