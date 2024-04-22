@@ -3,14 +3,13 @@
     {
       "id": "1",
       "isLoggedIn": true,
-      "name": "Kartik",
+      "name": "Kartik Jethani",
       "email": "kj@gmail.com"
     },
     {
       "id": "2",
       "isLoggedIn": false,
       "name": "Shivansh",
-
       "email": "shivansh@gmail.com"
     },
     {

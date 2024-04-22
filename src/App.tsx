@@ -69,7 +69,7 @@ function App() {
       <div style={{ marginTop: "100px" }}>
         <H1 heading="List of all users" />
         <div style={{ marginTop: "20px" }}>
-          <UserListing users={users} />
+          <UserListing />
         </div>
       </div>
     </div>
