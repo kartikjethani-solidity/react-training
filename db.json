@@ -1,0 +1,23 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "isLoggedIn": true,
+      "name": "Kartik",
+      "email": "kj@gmail.com"
+    },
+    {
+      "id": "2",
+      "isLoggedIn": false,
+      "name": "Shivansh",
+
+      "email": "shivansh@gmail.com"
+    },
+    {
+      "id": "3",
+      "isLoggedIn": true,
+      "name": "Kamya",
+      "email": "kamya@gmail.com"
+    }
+  ]
+}
