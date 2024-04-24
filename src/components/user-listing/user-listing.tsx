@@ -1,6 +1,8 @@
 import { FC, MouseEventHandler, useEffect, useState } from "react";
 import { User } from "../../types/user";
 import { Profile } from "../profile";
+import { H1 } from "../h1";
+import { UserDetails } from "./user-details";
 
 type Props = {
   users: Array<User>;
@@ -8,6 +10,7 @@ type Props = {
 
 export const UserListing = () => {
   const [users, setUsers] = useState<User[]>([]);
+  const [selectedUser, setSelectedUser] = useState<User>();
 
   useEffect(() => {
     fetch("http://localhost:3000/users")
@@ -17,13 +20,30 @@ export const UserListing = () => {
       });
   }, []);
 
+  const setUserFromProfile = (user: User) => {
+    setSelectedUser(user);
+  };
+
   return (
     <>
-      {users.map((user) => {
-        return <Profile email={user.email} name={user.name} id={user.id} />;
-      })}
+      <div className="flex m-2 border rounded bg-slate-100">
+        {users.map((user) => {
+          return <Profile user={user} clickHandler={setSelectedUser} />;
+        })}
+      </div>
 
-      {/* <UserDetails id{1} /> */}
+      <div>
+        {selectedUser && (
+          <UserDetails
+            id={selectedUser.id}
+            email={selectedUser.email}
+            name={selectedUser.name}
+            phone={selectedUser.phone}
+            isLoggedIn={selectedUser.isLoggedIn}
+            address={selectedUser.address}
+          />
+        )}
+      </div>
     </>
   );
 };
