@@ -40,9 +40,8 @@ function App() {
     <div className="App">
       {user ? (
         <Profile
-          email={user.email}
-          id={user.id}
-          name={user.name}
+          user={user}
+          clickHandler={() => {}}
           // address={{
           //   firstLine: "Corenthum",
           //   city: "Noida",
