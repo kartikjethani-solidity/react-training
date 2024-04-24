@@ -39,31 +39,10 @@ function App() {
   return (
     <div className="App">
       {user ? (
-        <Profile
-          user={user}
-          clickHandler={() => {}}
-          // address={{
-          //   firstLine: "Corenthum",
-          //   city: "Noida",
-          //   state: "UP",
-          // }}
-        />
+        <Profile user={user} clickHandler={() => {}} />
       ) : (
         <button onClick={signIn}>Sign In</button>
       )}
-
-      <div className={myClassName}>Hello</div>
-
-      {/* <Profile
-        email="shivansh@abc.com"
-        id={2}
-        name="Shivansh"
-        address={{
-          firstLine: "Corenthum",
-          city: "Noida",
-          state: "UP",
-        }}
-      /> */}
 
       <div style={{ marginTop: "100px" }}>
         <H1 heading="List of all users" />
