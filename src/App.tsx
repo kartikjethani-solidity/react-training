@@ -13,6 +13,14 @@ function App() {
       name: "Kartik",
       id: 1,
       email: "kj@gmail.com",
+      phone:9876321432,
+      address: {
+        houseNo: "D-48 sector-15",
+        city: "Chandigarh",
+        state: "Chandigarh",
+        zipcode: 765683,
+        country:"India"
+      }
     };
 
     // useReducer
@@ -38,21 +46,21 @@ function App() {
 
   return (
     <div className="App">
-      {user ? (
+      {/* {user ? (
         <Profile
           user={user}
-          clickHandler={() => {}}
-          // address={{
-          //   firstLine: "Corenthum",
-          //   city: "Noida",
-          //   state: "UP",
-          // }}
+          clickHandler={() => { }}
+        // address={{
+        //   firstLine: "Corenthum",
+        //   city: "Noida",
+        //   state: "UP",
+        // }}
         />
       ) : (
         <button onClick={signIn}>Sign In</button>
       )}
 
-      <div className={myClassName}>Hello</div>
+      <div className={myClassName}>Hello</div> */}
 
       {/* <Profile
         email="shivansh@abc.com"
@@ -65,11 +73,14 @@ function App() {
         }}
       /> */}
 
-      <div style={{ marginTop: "100px" }}>
-        <H1 heading="List of all users" />
-        <div style={{ marginTop: "20px" }}>
-          <UserListing />
-        </div>
+      <div className="flex justify-center " style={{ marginTop: "100px" }}>
+        <div className="">
+          <H1 heading="List of all users" />
+          <div className="">
+            <UserListing />
+          </div>
+          </div>
+        
       </div>
     </div>
   );

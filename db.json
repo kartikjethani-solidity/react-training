@@ -4,19 +4,43 @@
       "id": "1",
       "isLoggedIn": true,
       "name": "Kartik Jethani",
-      "email": "kj@gmail.com"
+      "email": "kj@gmail.com",
+      "phone": "9876543212",
+      "address": {
+        "houseNo": "D-48 sector-15",
+        "city": "Chandigarh",
+        "state": "Chandigarh",
+        "zipcode": 765683,
+        "country":"India"
+      }
     },
     {
       "id": "2",
       "isLoggedIn": false,
       "name": "Shivansh",
-      "email": "shivansh@gmail.com"
+      "email": "shivansh@gmail.com",
+      "phone": "98765432786",
+      "address": {
+        "houseNo": "D-48 Sector-62",
+        "city": "Noida",
+        "state": "UP",
+        "zipcode": 765658,
+        "country":"India"
+      }
     },
     {
       "id": "3",
       "isLoggedIn": true,
       "name": "Kamya",
-      "email": "kamya@gmail.com"
+      "email": "kamya@gmail.com",
+      "phone": "9876534762",
+      "address": {
+        "houseNo": "E-98 sector-52",
+        "city": "Noida",
+        "state": "UP",
+        "zipcode": 765676,
+        "country":"India"
+      }
     }
   ]
 }

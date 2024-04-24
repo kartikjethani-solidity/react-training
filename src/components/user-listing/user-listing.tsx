@@ -26,14 +26,7 @@ export const UserListing = () => {
 
   return (
     <>
-<<<<<<< HEAD
-      {users.map((user) => {
-        return <Profile email={user.email} name={user.name} id={user.id} />;
-      })}
-
-      {/* <UserDetails id{1} /> */}
-=======
-      <div>
+      <div className="flex m-2 border rounded bg-slate-100">
         {users.map((user) => {
           return <Profile user={user} clickHandler={setSelectedUser} />;
         })}
@@ -45,11 +38,12 @@ export const UserListing = () => {
             id={selectedUser.id}
             email={selectedUser.email}
             name={selectedUser.name}
+            phone={selectedUser.phone}
             isLoggedIn={selectedUser.isLoggedIn}
+            address={selectedUser.address}
           />
         )}
       </div>
->>>>>>> ffc60df6795c7327d6f0c18d130e432f172aa2cc
     </>
   );
 };
