@@ -32,7 +32,7 @@ export const UserListing = () => {
         })}
       </div>
 
-      <div className=" text-xl font-bold">
+      <div className=" text-lg">
         {selectedUser && (
           <UserDetails
             id={selectedUser.id}

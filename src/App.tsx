@@ -49,7 +49,12 @@ function App() {
           // }}
         />
       ) : (
-        <button onClick={signIn}>Sign In</button>
+        <button
+          onClick={signIn}
+          className="text-xl bg-blue-500 text-white py-2 px-4 rounded-md mb-8 mt-8"
+        >
+          Sign In
+        </button>
       )}
 
       <div className={myClassName}>Hello</div>
@@ -65,7 +70,7 @@ function App() {
         }}
       /> */}
 
-      <div style={{ marginTop: "100px" }}>
+      <div style={{ marginTop: "25px" }}>
         <H1 heading="List of all users" />
         <div style={{ marginTop: "20px" }}>
           <UserListing />
