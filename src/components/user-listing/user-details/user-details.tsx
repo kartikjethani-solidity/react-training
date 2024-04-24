@@ -13,7 +13,7 @@ export const UserDetails: FC<User> = ({ email, name, isLoggedIn }) => {
       <div className="bg-yellow">
         <div>Name: {name}</div>
         <div>Email: {email}</div>
-        <div>Is Logged In?: {isLoggedIn}</div>
+        <div>Is Logged In ?: {isLoggedIn}</div>
       </div>
     </>
   );
