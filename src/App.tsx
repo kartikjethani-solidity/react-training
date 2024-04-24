@@ -1,24 +1,58 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+
+import "./App.css";
+import { useState } from "react";
+import { User } from "./types/user";
+import { Profile } from "./components/profile";
+import { H1 } from "./components/h1";
+
+import { UserListing } from "./components/user-listing/user-listing";
 
 function App() {
+  const [isLoggedIn, setLoggedIn] = useState<boolean>(false);
+  const [user, setUser] = useState<User>();
+
+  const users = [
+    { isLoggedIn: true, name: "Kartik", id: 1, email: "kj@gmail.com" },
+    {
+      isLoggedIn: false,
+      name: "Shivansh",
+      id: 1,
+      email: "shivansh@gmail.com",
+    },
+    { isLoggedIn: true, name: "Kamya", id: 1, email: "kamya@gmail.com" },
+  ];
+
+  const signIn = () => {
+    const user = {
+      isLoggedin: true,
+      name: "Dhruv",
+      id: 1,
+      email: "dhruv@worksimpli",
+    };
+
+    setLoggedIn(user.isLoggedin);
+    setUser(user);
+  };
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+      {user ? (
+        <Profile user={user} clickHandler={() => {}} />
+      ) : (
+        <button
+          type="button"
+          className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+          onClick={signIn}
         >
-          Learn React
-        </a>
-      </header>
+          Signin
+        </button>
+      )}
+      <div style={{ marginTop: "100px" }}>
+        <H1 heading="List of all users" />
+        <div style={{ marginTop: "20px" }}>
+          <UserListing />
+        </div>
+      </div>
     </div>
   );
 }

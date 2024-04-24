@@ -1,0 +1,22 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "isLoggedIn": true,
+      "name": "Kartik Jethani",
+      "email": "kj@gmail.com"
+    },
+    {
+      "id": "2",
+      "isLoggedIn": false,
+      "name": "Shivansh",
+      "email": "shivansh@gmail.com"
+    },
+    {
+      "id": "3",
+      "isLoggedIn": true,
+      "name": "Harshit Mishra",
+      "email": "Harshit@gmail.com"
+    }
+  ]
+}
