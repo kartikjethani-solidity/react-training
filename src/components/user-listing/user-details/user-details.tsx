@@ -10,7 +10,7 @@ export const UserDetails: FC<User> = ({ email, name, isLoggedIn }) => {
 
   return (
     <>
-      <div className="bg-yellow">
+      <div className="inline-block	p-5 bg-yellow-300 rounded-xl">
         <div>Name: {name}</div>
         <div>Email: {email}</div>
         <div>Is Logged In?: {isLoggedIn}</div>
