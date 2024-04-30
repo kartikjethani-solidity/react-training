@@ -4,6 +4,8 @@ import { Profile } from "./components/profile";
 import { User } from "./types/user";
 import { H1 } from "./components/h1";
 import { UserListing } from "./components/user-listing";
+import { Modal } from "./components/modal";
+import { LoginForm } from "./components/login-form";
 
 function App() {
   const signIn = () => {
@@ -37,42 +39,52 @@ function App() {
   const myClassName = isLoggedIn ? "a" : "b";
 
   return (
-    <div className="App">
-      {user ? (
-        <Profile
-          user={user}
-          clickHandler={() => {}}
-          // address={{
-          //   firstLine: "Corenthum",
-          //   city: "Noida",
-          //   state: "UP",
-          // }}
-        />
-      ) : (
-        <button onClick={signIn}>Sign In</button>
-      )}
-
-      <div className={myClassName}>Hello</div>
-
-      {/* <Profile
-        email="shivansh@abc.com"
-        id={2}
-        name="Shivansh"
-        address={{
-          firstLine: "Corenthum",
-          city: "Noida",
-          state: "UP",
-        }}
-      /> */}
-
-      <div style={{ marginTop: "100px" }}>
-        <H1 heading="List of all users" />
-        <div style={{ marginTop: "20px" }}>
-          <UserListing />
-        </div>
-      </div>
-    </div>
+    <Modal title="Login Modal">
+      <LoginForm>
+        <Modal title="Edit Profile Pic">
+          <h1></h1>
+        </Modal>
+      </LoginForm>
+    </Modal>
   );
+
+  // return (
+  //   <div className="App">
+  //     {user ? (
+  //       <Profile
+  //         user={user}
+  //         clickHandler={() => {}}
+  //         // address={{
+  //         //   firstLine: "Corenthum",
+  //         //   city: "Noida",
+  //         //   state: "UP",
+  //         // }}
+  //       />
+  //     ) : (
+  //       <button onClick={signIn}>Sign In</button>
+  //     )}
+
+  //     <div className={myClassName}>Hello</div>
+
+  //     {/* <Profile
+  //       email="shivansh@abc.com"
+  //       id={2}
+  //       name="Shivansh"
+  //       address={{
+  //         firstLine: "Corenthum",
+  //         city: "Noida",
+  //         state: "UP",
+  //       }}
+  //     /> */}
+
+  //     <div style={{ marginTop: "100px" }}>
+  //       <H1 heading="List of all users" />
+  //       <div style={{ marginTop: "20px" }}>
+  //         <UserListing />
+  //       </div>
+  //     </div>
+  //   </div>
+  // );
 }
 
 export default App;
