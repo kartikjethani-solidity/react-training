@@ -16,7 +16,7 @@ export const Profile: FC<ProfileProps> = ({ user, clickHandler }) => {
   return (
     <>
       <div
-        className="bg-red-300 h-10 m-10 cursor-pointer"
+        className="bg-pink-300 flex-row items-center m-20 h-20 w-20 cursor-pointer"
         onClick={setCurrentUser}
       >
         <H1 heading={user.name} />

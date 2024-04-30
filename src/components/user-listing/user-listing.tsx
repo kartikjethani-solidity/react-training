@@ -26,7 +26,7 @@ export const UserListing = () => {
 
   return (
     <>
-      <div>
+      <div className="flex justify-center">
         {users.map((user) => {
           return <Profile user={user} clickHandler={setSelectedUser} />;
         })}
