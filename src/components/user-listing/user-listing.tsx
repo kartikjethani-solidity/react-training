@@ -3,6 +3,7 @@ import { User } from "../../types/user";
 import { Profile } from "../profile";
 import { H1 } from "../h1";
 import { UserDetails } from "./user-details";
+import { calculationPromise } from "../../utils/promises";
 
 type Props = {
   users: Array<User>;
@@ -13,11 +14,22 @@ export const UserListing = () => {
   const [selectedUser, setSelectedUser] = useState<User>();
 
   useEffect(() => {
+    // consuming a promise
+    calculationPromise
+      .then((resp) => {
+        console.log(resp);
+      })
+      .catch((err) => console.log(err))
+      .finally(() => {
+        console.log("inside finally block");
+      });
+
     fetch("http://localhost:3000/users")
       .then((response) => response.json())
       .then((items) => {
         setUsers(items);
-      });
+      })
+      .catch((errorMessage) => console.error(errorMessage));
   }, []);
 
   const setUserFromProfile = (user: User) => {
