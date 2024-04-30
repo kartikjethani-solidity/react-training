@@ -7,7 +7,7 @@ type Props = {
 export const H1: FC<Props> = ({ heading }) => {
   return (
     <h1
-      className=" font-bold text-2xl font-sans
+      className=" font-bold text-2xl font-sans 
     "
     >
       {heading}
