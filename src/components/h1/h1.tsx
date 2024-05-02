@@ -5,5 +5,9 @@ type Props = {
 };
 
 export const H1: FC<Props> = ({ heading }) => {
-  return <h1 style={{ fontSize: "12px" }}>{heading}</h1>;
+  return (
+    <h1 className="font-bold text-center	" style={{ fontSize: "26px" }}>
+      {heading}
+    </h1>
+  );
 };
