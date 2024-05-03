@@ -5,12 +5,5 @@ type Props = {
 };
 
 export const H1: FC<Props> = ({ heading }) => {
-  return (
-    <h1
-      className=" font-bold text-2xl font-sans 
-    "
-    >
-      {heading}
-    </h1>
-  );
+  return <h1 className="width">{heading}</h1>;
 };

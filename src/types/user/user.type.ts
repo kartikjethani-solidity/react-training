@@ -4,6 +4,7 @@ export type User = {
   name: string;
   email: string;
   id: number;
-  address?: Address;
+  address: Address;
+  phone:number;
   isLoggedIn?: boolean;
 };

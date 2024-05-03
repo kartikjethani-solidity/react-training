@@ -2,59 +2,45 @@
   "users": [
     {
       "id": "1",
-      "username": "sampleuser",
-      "password": "password123",
-      "email": "sample@example.com",
-      "phoneNumber": "1234567890"
+      "isLoggedIn": true,
+      "name": "Kartik Jethani",
+      "email": "kj@gmail.com",
+      "phone": "9876543212",
+      "address": {
+        "houseNo": "D-48 sector-15",
+        "city": "Chandigarh",
+        "state": "Chandigarh",
+        "zipcode": 765683,
+        "country":"India"
+      }
     },
     {
-      "id": "7215",
-      "username": "harsh karki ",
-      "password": "1231213",
-      "email": "ajreiaejiu@gmail.in",
-      "phoneNumber": "1212121212"
+      "id": "2",
+      "isLoggedIn": false,
+      "name": "Shivansh",
+      "email": "shivansh@gmail.com",
+      "phone": "98765432786",
+      "address": {
+        "houseNo": "D-48 Sector-62",
+        "city": "Noida",
+        "state": "UP",
+        "zipcode": 765658,
+        "country":"India"
+      }
     },
     {
-      "id": "dc39",
-      "username": "harsh karki ",
-      "password": "1231213",
-      "email": "ajreiaejiu@gmail.in",
-      "phoneNumber": "+911212121212"
-    },
-    {
-      "id": "0f2a",
-      "username": "harsh karki ",
-      "password": "1231213",
-      "email": "ajreiaejiu@gmail.in",
-      "phoneNumber": "+911212121212"
-    },
-    {
-      "id": "9372",
-      "username": "harsh karki ",
-      "password": "1231213",
-      "email": "ajreiaejiu@gmail.in",
-      "phoneNumber": "911212121212"
-    },
-    {
-      "id": "0e94",
-      "username": "harsh",
-      "password": "121121",
-      "email": "jdajfhj@gmail.in",
-      "phoneNumber": "9292922222"
-    },
-    {
-      "id": "6390",
-      "username": "harsh",
-      "password": "karki12",
-      "email": "email@wmail.com",
-      "phoneNumber": "+91-1234567891"
-    },
-    {
-      "id": "9a00",
-      "username": "harsh",
-      "password": "123456",
-      "email": "harewjh@gmail.com",
-      "phoneNumber": "1234567890"
+      "id": "3",
+      "isLoggedIn": true,
+      "name": "Kamya",
+      "email": "kamya@gmail.com",
+      "phone": "9876534762",
+      "address": {
+        "houseNo": "E-98 sector-52",
+        "city": "Noida",
+        "state": "UP",
+        "zipcode": 765676,
+        "country":"India"
+      }
     }
   ]
 }

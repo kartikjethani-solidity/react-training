@@ -9,7 +9,7 @@ type User = {
   phoneNumber: string;
 };
 
-export const LoginForm: FC<PropsWithChildren> = ({ children }) => {
+export const LoginForm: FC<PropsWithChildren> = () => {
   const [user, setUser] = useState<User>({
     username: "",
     password: "",
@@ -26,23 +26,12 @@ export const LoginForm: FC<PropsWithChildren> = ({ children }) => {
 
   const validateForm = () => {
     const errors = [];
-
-    if (!user.username || /\d/.test(user.username)) {
-      errors.push("Username: ( !empty + only alphabets ");
-    }
-
-    if (!user.password || user.password.length < 6) {
-      errors.push("password.length >=6");
-    }
-
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!user.email || !emailRegex.test(user.email)) {
       errors.push("Enter valid email address");
     }
-
-    const phoneNumberRegex = /^(?:(?:\+?91[\-\s]?)?[0-9]{10})$/;
-    if (!user.phoneNumber || !phoneNumberRegex.test(user.phoneNumber)) {
-      errors.push("Enter a valid 10-digit Indian phone number");
+    if (!user.password || user.password.length < 6) {
+      errors.push("too short password");
     }
 
     if (!isDisclaimerAgreed) {
@@ -77,56 +66,88 @@ export const LoginForm: FC<PropsWithChildren> = ({ children }) => {
 
   return (
     <>
-      <div className="login-form">
+      <div className="login-form ">
+
+
+
+        <div className="bg-slate-500 m-6 w-6/12 h-72 inline-block  ">
+          <div className="error-message mt-3">
         {errorMessages.map((message, index) => (
           <p key={index} style={{ color: "red" }}>
             {message}
           </p>
+          
         ))}
-<div></div>
-        <input
-          value={user.username}
-          onChange={handleChange}
-          name="username"
-          placeholder="Enter username"
-        />
-        <input
-          value={user.password}
-          onChange={handleChange}
-          name="password"
-          placeholder="Enter Password"
-          type="password"
-        />
-        <input
-          value={user.email}
-          onChange={handleChange}
-          name="email"
-          placeholder="Enter email"
-          type="email"
-        />
-        <input
-          value={user.phoneNumber}
-          onChange={handleChange}
-          name="phoneNumber"
-          placeholder="Enter phone number"
-          type="tel"
-        />
-        <div className="checkbox-container">
-          <input
-            type="checkbox"
-            checked={isDisclaimerAgreed}
-            onChange={(e) => setDisclaimerAgreed(e.target.checked)}
-            id="disclaimer"
-          />
-          <label htmlFor="disclaimer" className="text-green-500">
-            Disclaimer
-          </label>
         </div>
+          <div className="form-group mt-3 ">
+            <input
+              id="email"
+              className="border border-gray-300 rounded-sm px-2 py-1 border mb-2 w-1/3"
+              value={user.username}
+              onChange={handleChange}
+              name="username"
+              placeholder="Enter username"
+              maxLength={100}
+            />
+          </div>
+          <div className="form-group">
+            <input
+              className="border border-gray-300 rounded-sm px-2 py-1 mb-2 w-1/3"
+              id="password"
+              type="password"
+              name="password"
+              placeholder="Enter Password"
 
-        <button onClick={handleSubmit}>submit</button>
+              value={user.password}
+              onChange={handleChange}
+
+            />
+          </div>
+
+          <div className="mb-3">
+            <div className="fbn">
+              {" "}
+              <button
+                className="bg-[#f9593a] hover:bg-[#ef4727] text-white w-1/3 rounded font-semibold py-2.5"
+                onClick={handleSubmit}
+              >
+                Login
+              </button>
+            </div>
+            <div className="checkbox-container">
+              <input
+                type="checkbox"
+                checked={isDisclaimerAgreed}
+                onChange={(e) => setDisclaimerAgreed(e.target.checked)}
+                id="disclaimer"
+              />
+              <label htmlFor="disclaimer" className="text-green-500 mb-2">
+                terms and conditions
+              </label>
+            </div>
+
+            <div className="form-container--footer text-center">
+              <p className="text-sm leading-3 mb-2">
+                <button className="btn btn-link text-[#2ebe6e] hover:text-blue-500">
+                  forgott password
+                </button>
+              </p>
+              <p className="text-xs leading-3">
+                create account ?
+                <button
+
+                  className=" text-[#2ebe6e] hover:text-blue-500 px-1 "
+                >
+                  {"  "}
+                  sign UP
+                </button>
+              </p>
+            </div>
+          </div>
+        </div>
 
       </div>
     </>
   );
 
-};
+}
