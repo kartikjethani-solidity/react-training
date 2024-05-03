@@ -15,7 +15,10 @@ function App() {
 
   return (
     <Modal title="Login Modal">
-      <LoginForm></LoginForm>
+      <LoginForm>
+        {/* <InputField>
+        </InputField> */}
+      </LoginForm>
     </Modal>
   );
 }

@@ -1,60 +1,11 @@
 {
   "users": [
     {
-      "id": "1",
-      "username": "sampleuser",
-      "password": "password123",
-      "email": "sample@example.com",
-      "phoneNumber": "1234567890"
-    },
-    {
-      "id": "7215",
-      "username": "harsh karki ",
-      "password": "1231213",
-      "email": "ajreiaejiu@gmail.in",
-      "phoneNumber": "1212121212"
-    },
-    {
-      "id": "dc39",
-      "username": "harsh karki ",
-      "password": "1231213",
-      "email": "ajreiaejiu@gmail.in",
-      "phoneNumber": "+911212121212"
-    },
-    {
-      "id": "0f2a",
-      "username": "harsh karki ",
-      "password": "1231213",
-      "email": "ajreiaejiu@gmail.in",
-      "phoneNumber": "+911212121212"
-    },
-    {
-      "id": "9372",
-      "username": "harsh karki ",
-      "password": "1231213",
-      "email": "ajreiaejiu@gmail.in",
-      "phoneNumber": "911212121212"
-    },
-    {
-      "id": "0e94",
-      "username": "harsh",
-      "password": "121121",
-      "email": "jdajfhj@gmail.in",
-      "phoneNumber": "9292922222"
-    },
-    {
-      "id": "6390",
-      "username": "harsh",
-      "password": "karki12",
-      "email": "email@wmail.com",
-      "phoneNumber": "+91-1234567891"
-    },
-    {
-      "id": "9a00",
-      "username": "harsh",
-      "password": "123456",
-      "email": "harewjh@gmail.com",
-      "phoneNumber": "1234567890"
+      "id": "02f7",
+      "username": "Harsh Karki",
+      "password": "1234567",
+      "email": "adfad@gmail.com",
+      "phoneNumber": "1212121219"
     }
   ]
 }

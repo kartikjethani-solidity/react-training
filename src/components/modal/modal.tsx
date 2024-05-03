@@ -11,9 +11,8 @@ export const Modal: FC<PropsWithChildren<ModalProps>> = ({
 }) => {
   return (
     <>
-      <div className="mx-auto w-96 bg-green-500 text-center h-96">
-        <H1 heading={title} />
-        <div className="w-80 bg-red-50">{children}</div>
+      <div>
+        <div>{children}</div>
       </div>
     </>
   );
