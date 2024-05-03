@@ -13,13 +13,13 @@ function App() {
       name: "Kartik",
       id: 1,
       email: "kj@gmail.com",
-      phone:9876321432,
+      phone: 9876321432,
       address: {
         houseNo: "D-48 sector-15",
         city: "Chandigarh",
         state: "Chandigarh",
         zipcode: 765683,
-        country:"India"
+        country: "India"
       }
     };
 
