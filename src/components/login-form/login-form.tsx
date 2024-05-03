@@ -1,82 +1,96 @@
-import { url } from "inspector";
-import { ChangeEventHandler, FC, PropsWithChildren, useState } from "react";
+import React, { ChangeEventHandler, FC, PropsWithChildren, useState } from "react";
 
 export const LoginForm: FC<PropsWithChildren> = ({ children }) => {
-  //   const [username, setUsername] = useState<string>("kartik@gmail.com");
-  //   const [password, setPassword] = useState<string>("");
-
-  type User = {
-    username: string;
-    password: string;
-  };
-
+  const [user, setUser] = useState({ username: "", password: "" });
+  const [isUsernameValid, setUsernameValid] = useState(true);
+  const [isPasswordValid, setPasswordValid] = useState(true);
   const [isDisclaimerAgreed, setDisclaimerAgreed] = useState(false);
 
-  const [user, setUser] = useState<User>({ username: "", password: "" });
-
-  //   const handleUsernameChange: React.ChangeEventHandler<HTMLInputElement> = (
-  //     e
-  //   ) => {
-  //     setUsername(e.target.value);
-  //   };
-
-  //   const handlePasswordChange: React.ChangeEventHandler<HTMLInputElement> = (
-  //     e
-  //   ) => {
-  //     setPassword(e.target.value);
-  //   };
-
-  //   const handleChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
-  //     const { name, value } = e.target;
-  //     if (name === "username") {
-  //       setUsername(value);
-  //     } else if (name === "password") {
-  //       setPassword(value);
-  //     }
-  //   };
-
-  const handleChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
+  const handleChange: ChangeEventHandler<HTMLInputElement> = (e) => {
     const { name, value } = e.target;
-    console.log(user, { name, value });
     setUser({ ...user, [name]: value });
   };
 
   const handleSubmit = async () => {
-    await fetch("/api/login", { method: "POST", body: JSON.stringify(user) });
+    // Validate username and password
+    let usernameValid = true;
+    let passwordValid = true;
+
+    if (!user.username.trim()) {
+      setUsernameValid(false);
+      usernameValid = false;
+    } else {
+      setUsernameValid(true);
+    }
+
+    if (!user.password.trim()) {
+      setPasswordValid(false);
+      passwordValid = false;
+    } else {
+      setPasswordValid(true);
+    }
+
+    // If all inputs are valid, submit the form
+    if (usernameValid && passwordValid) {
+      // Proceed with form submission
+      console.log("Form submitted");
+    }
   };
 
   const handleCheckboxChange: ChangeEventHandler<HTMLInputElement> = (e) => {
-    console.log(e.target.checked);
     setDisclaimerAgreed(e.target.checked);
   };
 
   return (
-    <div className="mx-auto h-52 bg-orange-500">
-      <input
-        type="checkbox"
-        checked={isDisclaimerAgreed}
-        onChange={handleCheckboxChange}
+    <form className="max-w-sm mx-auto">
+    <div className="mb-5">
+      <label  className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Enter username</label>
+      <input 
+        type="text" 
+        id="username" 
+        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
+        placeholder="Enter username" 
+        value={user.username} 
+        onChange={handleChange} 
+        name="username" 
       />
-
-      <input
-        value={user?.username}
-        onChange={handleChange}
-        className="border border-red-300"
-        name="username"
-        placeholder="enter username"
-      />
-      <input
-        value={user?.password}
-        onChange={handleChange}
-        placeholder="Enter Password"
-        className="border border-red-300"
-        type="password"
-        name="password"
-      />
-
-      <button onClick={handleSubmit}>Login</button>
-
-      {children}
+      {!isUsernameValid && <div className="text-red-500 text-xs">Username is required</div>}
     </div>
+    <div className="mb-5">
+      <label  className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Enter Password</label>
+      <input 
+        type="password" 
+        id="password" 
+        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
+        placeholder="Enter Password" 
+        value={user.password} 
+        onChange={handleChange} 
+        name="password" 
+      />
+      {!isPasswordValid && <div className="text-red-500 text-xs">Password is required</div>}
+    </div>
+    <div className="flex items-start mb-5">
+      <div className="flex items-center h-5">
+        <input 
+          id="remember" 
+          type="checkbox" 
+          value="" 
+          className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800" 
+          checked={isDisclaimerAgreed} 
+          onChange={handleCheckboxChange} 
+          required 
+        />
+      </div>
+      <label  className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Remember me</label>
+    </div>
+    <button 
+      type="submit" 
+      className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" 
+      onClick={handleSubmit}
+    >
+      Login
+    </button>
+  </form>
+  
   );
 };
