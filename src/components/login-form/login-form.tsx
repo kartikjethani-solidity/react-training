@@ -35,7 +35,7 @@ export const LoginForm: FC<PropsWithChildren> = () => {
     }
 
     if (!isDisclaimerAgreed) {
-      errors.push("You must agree to the disclaimer");
+      errors.push("You must have to accept terms and conditions");
     }
 
     setErrorMessages(errors);
@@ -72,13 +72,13 @@ export const LoginForm: FC<PropsWithChildren> = () => {
 
         <div className="bg-slate-500 m-6 w-6/12 h-72 inline-block  ">
           <div className="error-message mt-3">
-        {errorMessages.map((message, index) => (
-          <p key={index} style={{ color: "red" }}>
-            {message}
-          </p>
-          
-        ))}
-        </div>
+            {errorMessages.map((message, index) => (
+              <p key={index} style={{ color: "red" }}>
+                {message}
+              </p>
+
+            ))}
+          </div>
           <div className="form-group mt-3 ">
             <input
               id="email"
@@ -116,12 +116,13 @@ export const LoginForm: FC<PropsWithChildren> = () => {
             </div>
             <div className="checkbox-container">
               <input
+                className="rounded-lg"
                 type="checkbox"
                 checked={isDisclaimerAgreed}
                 onChange={(e) => setDisclaimerAgreed(e.target.checked)}
                 id="disclaimer"
               />
-              <label htmlFor="disclaimer" className="text-green-500 mb-2">
+              <label htmlFor="disclaimer" className="text-green-500 mb-2 px-1">
                 terms and conditions
               </label>
             </div>
