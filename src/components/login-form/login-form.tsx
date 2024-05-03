@@ -5,6 +5,17 @@ export const LoginForm: FC<PropsWithChildren> = ({ children }) => {
   // const showValidFormat = () => {
   //   <PasswordFormat />;
   // };
+
+  type User = {
+    username: string;
+    password: string;
+  };
+
+  const [user, setUser] = useState<User>({
+    username: "",
+    password: "",
+  });
+
   const [PasswordFormat, setPasswordFormat] = useState<boolean>(false);
 
   const passwordFormatTrue: React.FocusEventHandler<HTMLInputElement> = () => {
@@ -14,27 +25,42 @@ export const LoginForm: FC<PropsWithChildren> = ({ children }) => {
     setPasswordFormat(false);
   };
 
-  const passwordCorrection = () => {
-    var lowerCaseLetters = /[a-z]/g;
-    var Upper;
+  const usernamechange: any = (e: { target: { name: any; value: any } }) => {
+    const { name, value } = e.target;
+    setUser((prev) => ({ ...prev, [name]: value }));
   };
+
+  // const passwordCorrection = () => {
+  // var lowerCaseLetters = /[a-z]/g;
+  //     var isUpperCase = new RegExp(/(?=.*[A-Z])/g)
+
   return (
     <>
       <H1 heading="LOGIN/SIGN UP Page"></H1>
       <div>
         <form>
           <label htmlFor="username">Username</label>
-          <input type="text" id="username" placeholder="Enter username" required />
+          <input
+            value={user.username}
+            type="text"
+            name="username"
+            placeholder="Enter username"
+            required
+            onChange={usernamechange}
+          />
 
           <label htmlFor="password">Password</label>
           <input
             type="password"
-            id="password"
+            value={user.password}
+            name="password"
             placeholder="Enter password"
             required
             onFocus={passwordFormatTrue}
             onBlur={passwordFormatFalse}
-            onKeyUp={passwordCorrection}
+            onChange={usernamechange}
+
+            // onKeyUp={passwordCorrection}
           />
 
           <button type="submit" value="Submit">

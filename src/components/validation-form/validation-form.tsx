@@ -1,13 +1,74 @@
+import { ChangeEventHandler, useState } from "react";
 import { H1 } from "../h1";
+import { Address } from "../../types/address";
 
 export const ValidationForm = () => {
+  type User = {
+    username: string;
+    password: string;
+    email: string;
+    phoneNumber: string;
+    // address: Address;
+  };
+  const [user, setUser] = useState<User>({
+    username: "",
+    password: "",
+    email: "",
+    phoneNumber: "",
+    // address:"address"
+  });
+
+  const [errorMessages, setErrorMessages] = useState<string[]>([]);
+  const [tandcAgreed, settandcAgreed] = useState(false);
+
+  const handleChange: ChangeEventHandler<HTMLInputElement> = (e) => {
+    const { name, value } = e.target;
+    setUser((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const tandcHandle: ChangeEventHandler<HTMLInputElement> = (e) => {
+    settandcAgreed(e.target.checked);
+  };
+  const validateForm = () => {
+    const errors = [];
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!user.email || !emailRegex.test(user.email)) {
+      errors.push("Enter valid email address");
+    }
+    const phoneNumberRegex = /^(?:(?:\+?91[\-\s]?)?[0-9]{10})$/;
+    if (!user.phoneNumber || !phoneNumberRegex.test(user.phoneNumber)) {
+      errors.push("Enter a valid 10-digit Indian phone number");
+    }
+    if (!tandcAgreed) {
+      errors.push("You must agree to the disclaimer");
+    }
+
+    setErrorMessages(errors);
+    errorMessages.map((message, index) => {
+      console.log(message);
+    });
+
+    return errors.length === 0;
+  };
+  const clickSubmit = () => {
+    if (!validateForm()) return;
+  };
+
   return (
     <>
       <H1 heading="registration form"></H1>
 
       <form>
         <label htmlFor="username">Username: </label>
-        <input type="text" name="username" size={50} placeholder="Enter your username here!!" required />
+        <input
+          type="text"
+          name="username"
+          value={user.username}
+          size={50}
+          placeholder="Enter your username here!!"
+          required
+          onChange={handleChange}
+        />
 
         <label htmlFor="fname">First Name:</label>
         <input type="text" name="fname" placeholder="Enter your First name" size={20} required />
@@ -16,10 +77,23 @@ export const ValidationForm = () => {
         <input type="text" name="lname" size={20} placeholder="Enter your last name" />
 
         <label htmlFor="email">Email:</label>
-        <input type="email" name="email" size={50} placeholder="Enter your email" />
+        <input
+          type="email"
+          name="email"
+          value={user.email}
+          size={50}
+          placeholder="Enter your email"
+          onChange={handleChange}
+        />
 
         <label htmlFor="address">Address:</label>
-        <input type="text" name="address" size={60} placeholder="Enter your ghr ka address" />
+        <input
+          type="text"
+          name="address"
+          // value={user.address}
+          size={60}
+          placeholder="Enter your ghr ka address"
+        />
 
         <label htmlFor="country">Country:</label>
         <select name="country">
@@ -50,10 +124,10 @@ export const ValidationForm = () => {
         <label htmlFor="about">About:</label>
         <textarea name="about" id="about" placeholder="Enter your something interesting..."></textarea>
 
-        <input type="checkbox" name="tandc" value="tandc" />
+        <input type="checkbox" name="tandc" checked={tandcAgreed} onChange={tandcHandle} />
         <span>Agree with all the etrms and conditions??</span>
 
-        <button type="submit" value="Submit ">
+        <button type="submit" value="Submit" onClick={clickSubmit}>
           Submit
         </button>
       </form>
