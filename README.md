@@ -21,7 +21,7 @@ git clone https://github.com/kartikjethani-solidity/react-training.git
 
 cd react-training
 
-git checkout harsh
+git checkout harsh_recent_changes
 
 npm install
 
