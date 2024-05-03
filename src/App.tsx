@@ -14,7 +14,7 @@ function App() {
   const myClassName = isLoggedIn ? "a" : "b";
 
   return (
-    <Modal title="Login Modal">
+    <Modal title="Login Form ">
       <LoginForm></LoginForm>
     </Modal>
   );

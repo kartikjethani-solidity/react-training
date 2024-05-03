@@ -65,16 +65,12 @@ import { useState, ChangeEventHandler, FC, PropsWithChildren } from "react";
 type User = {
   username: string;
   password: string;
-  email: string;
-  phoneNumber: string;
 };
 
 export const LoginForm: FC<PropsWithChildren> = ({ children }) => {
   const [user, setUser] = useState<User>({
     username: "",
     password: "",
-    email: "",
-    phoneNumber: "",
   });
   const [errorMessages, setErrorMessages] = useState<string[]>([]);
   const [isDisclaimerAgreed, setDisclaimerAgreed] = useState(false);
@@ -93,16 +89,6 @@ export const LoginForm: FC<PropsWithChildren> = ({ children }) => {
 
     if (!user.password || user.password.length < 6) {
       errors.push("password.length >=6");
-    }
-
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!user.email || !emailRegex.test(user.email)) {
-      errors.push("Enter valid email address");
-    }
-
-    const phoneNumberRegex = /^(?:(?:\+?91[\-\s]?)?[0-9]{10})$/;
-    if (!user.phoneNumber || !phoneNumberRegex.test(user.phoneNumber)) {
-      errors.push("Enter a valid 10-digit Indian phone number");
     }
 
     if (!isDisclaimerAgreed) {
@@ -129,16 +115,16 @@ export const LoginForm: FC<PropsWithChildren> = ({ children }) => {
       });
 
       const data = await response.json();
-      data.then(() => console.log("Submission successful", data));
+      data.then(() => console.log("successful", data));
     } catch (error) {
-      console.error("Error submitting form", error);
+      console.error("Error", error);
     }
   };
 
   return (
     <div className="login-form">
       {errorMessages.map((message, index) => (
-        <p key={index} style={{ color: "red" }}>
+        <p key={index} style={{ color: "black" }}>
           {message}
         </p>
       ))}
@@ -156,20 +142,7 @@ export const LoginForm: FC<PropsWithChildren> = ({ children }) => {
         placeholder="Enter Password"
         type="password"
       />
-      <input
-        value={user.email}
-        onChange={handleChange}
-        name="email"
-        placeholder="Enter email"
-        type="email"
-      />
-      <input
-        value={user.phoneNumber}
-        onChange={handleChange}
-        name="phoneNumber"
-        placeholder="Enter phone number"
-        type="tel"
-      />
+
       <div className="checkbox-container">
         <input
           type="checkbox"
@@ -177,7 +150,7 @@ export const LoginForm: FC<PropsWithChildren> = ({ children }) => {
           onChange={(e) => setDisclaimerAgreed(e.target.checked)}
           id="disclaimer"
         />
-        <label htmlFor="disclaimer" className="text-green-500">
+        <label htmlFor="disclaimer" className="text-red-500">
           Disclaimer
         </label>
       </div>
