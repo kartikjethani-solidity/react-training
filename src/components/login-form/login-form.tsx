@@ -61,7 +61,7 @@ export const LoginForm: FC<PropsWithChildren> = ({ children }) => {
       <input
         value={user?.username}
         onChange={handleChange}
-        className="border border-red-300"
+        className="border border-pink-300"
         name="username"
         placeholder="enter username"
       />
@@ -69,7 +69,7 @@ export const LoginForm: FC<PropsWithChildren> = ({ children }) => {
         value={user?.password}
         onChange={handleChange}
         placeholder="Enter Password"
-        className="border border-red-300"
+        className="border border-pink-300"
         type="password"
         name="password"
       />
