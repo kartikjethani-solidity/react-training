@@ -7,15 +7,13 @@ export const ValidationForm = () => {
     username: string;
     password: string;
     email: string;
-    phoneNumber: string;
-    // address: Address;
+    address: Address;
   };
   const [user, setUser] = useState<User>({
     username: "",
     password: "",
     email: "",
-    phoneNumber: "",
-    // address:"address"
+    address: { firstLine: "", zipcode: 0 },
   });
 
   const [errorMessages, setErrorMessages] = useState<string[]>([]);
@@ -35,10 +33,7 @@ export const ValidationForm = () => {
     if (!user.email || !emailRegex.test(user.email)) {
       errors.push("Enter valid email address");
     }
-    const phoneNumberRegex = /^(?:(?:\+?91[\-\s]?)?[0-9]{10})$/;
-    if (!user.phoneNumber || !phoneNumberRegex.test(user.phoneNumber)) {
-      errors.push("Enter a valid 10-digit Indian phone number");
-    }
+
     if (!tandcAgreed) {
       errors.push("You must agree to the disclaimer");
     }
