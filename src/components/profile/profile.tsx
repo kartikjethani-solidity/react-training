@@ -19,8 +19,9 @@ export const Profile: FC<ProfileProps> = ({ user, clickHandler }) => {
         className="bg-red-300 flex-row items-center m-20 h-20 w-20 cursor-pointer"
         onClick={setCurrentUser}
       >
-        <H1 heading={user.name} />
+        <span className="text-white text-lg font-semibold">{user.name}</span>
       </div>
+
       {/* <h2>, {email}</h2>
       <div>{address?.firstLine}</div>
       <div>Is the user Logged in - {isLoggedIn ? "Yes" : "No"}</div> */}
