@@ -7,6 +7,7 @@ import { UserListing } from "./components/user-listing";
 import { Modal } from "./components/modal";
 import { LoginForm } from "./components/login-form";
 import { ValidationForm } from "./components/validation-form";
+import { SignUp } from "./components/signup-form";
 
 function App() {
   // const signIn = () => {
@@ -47,7 +48,8 @@ function App() {
   return (
     <>
       <LoginForm></LoginForm>
-      <ValidationForm />
+      {/* <SignUp /> */}
+      {/* <ValidationForm /> */}
     </>
   );
   // return (

@@ -1,22 +1,22 @@
 import { FC, PropsWithChildren, useState } from "react";
 import { H1 } from "../h1";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCheck, faTimes } from "@fortawesome/free-solid-svg-icons";
 
 export const LoginForm: FC<PropsWithChildren> = ({ children }) => {
-  // const showValidFormat = () => {
-  //   <PasswordFormat />;
-  // };
-
   type User = {
     username: string;
     password: string;
   };
 
-  const [user, setUser] = useState<User>({
-    username: "",
-    password: "",
-  });
-
+  const initialValues = { username: "", password: "" };
+  const [user, setUser] = useState<User>(initialValues);
   const [PasswordFormat, setPasswordFormat] = useState<boolean>(false);
+  const [lowerValidated, setLowerValidated] = useState(false);
+  const [upperValidated, setUpperValidated] = useState(false);
+  const [numberValidated, setNumberValidated] = useState(false);
+  const [specialValidated, setSpecialValidated] = useState(false);
+  const [lengthValidated, setLengthValidated] = useState(false);
 
   const passwordFormatTrue: React.FocusEventHandler<HTMLInputElement> = () => {
     setPasswordFormat(true);
@@ -25,19 +25,44 @@ export const LoginForm: FC<PropsWithChildren> = ({ children }) => {
     setPasswordFormat(false);
   };
 
-  const usernamechange: any = (e: { target: { name: any; value: any } }) => {
+  const handleChange: any = (e: { target: { name: any; value: any } }) => {
     const { name, value } = e.target;
-    setUser((prev) => ({ ...prev, [name]: value }));
+    setUser((user) => ({ ...user, [name]: value }));
+    console.log(user);
   };
 
-  // const passwordCorrection = () => {
-  // var lowerCaseLetters = /[a-z]/g;
-  //     var isUpperCase = new RegExp(/(?=.*[A-Z])/g)
+  const validatePassword = (e: any) => {
+    const password = e.target.value;
 
+    const lower = new RegExp("(?=.*[a-z])");
+    const upper = new RegExp("(?=.*[A-Z])");
+    const number = new RegExp("(?=.*[0-9])");
+    const special = new RegExp("(?=.*[!@#$%^&*])");
+    const length = new RegExp("(?=.{8,})");
+
+    if (lower.test(password)) {
+      setLowerValidated(true);
+    } else {
+      setLowerValidated(false);
+    }
+
+    setUpperValidated(upper.test(password));
+    setNumberValidated(number.test(password));
+    setSpecialValidated(special.test(password));
+    setLengthValidated(length.test(password));
+  };
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
+    // setFormErrors(validate(user));
+  };
+
+  const invalid = { color: "#999" }; // Dull text color
+  const valid = { color: "black" };
   return (
     <>
       <H1 heading="LOGIN/SIGN UP Page"></H1>
       <div>
+        <pre>{JSON.stringify(user, undefined, 2)}</pre>
         <form>
           <label htmlFor="username">Username</label>
           <input
@@ -46,7 +71,7 @@ export const LoginForm: FC<PropsWithChildren> = ({ children }) => {
             name="username"
             placeholder="Enter username"
             required
-            onChange={usernamechange}
+            onChange={handleChange}
           />
 
           <label htmlFor="password">Password</label>
@@ -58,12 +83,13 @@ export const LoginForm: FC<PropsWithChildren> = ({ children }) => {
             required
             onFocus={passwordFormatTrue}
             onBlur={passwordFormatFalse}
-            onChange={usernamechange}
-
-            // onKeyUp={passwordCorrection}
+            onChange={(e) => {
+              handleChange(e);
+              validatePassword(e);
+            }}
           />
 
-          <button type="submit" value="Submit">
+          <button type="submit" value="Submit" onSubmit={handleSubmit}>
             Submit
           </button>
         </form>
@@ -72,39 +98,23 @@ export const LoginForm: FC<PropsWithChildren> = ({ children }) => {
       {PasswordFormat && (
         <div id="message">
           <h3>Password must contain the following:</h3>{" "}
-          <p id="letter" className="invalid">
-            A <b>lowercase</b> letter{" "}
+          <p id="letter" style={lowerValidated ? valid : invalid}>
+            <FontAwesomeIcon icon={lowerValidated ? faCheck : faTimes} /> A <b>lower case</b> letter{" "}
+          </p>
+          <p id="capital" style={upperValidated ? valid : invalid}>
+            <FontAwesomeIcon icon={upperValidated ? faCheck : faTimes} /> A <b>capital (uppercase)</b> letter{" "}
           </p>{" "}
-          <p id="capital" className="invalid">
-            A <b>capital (uppercase)</b> letter{" "}
+          <p id="number" style={numberValidated ? valid : invalid}>
+            <FontAwesomeIcon icon={numberValidated ? faCheck : faTimes} /> A <b>number</b>{" "}
           </p>{" "}
-          <p id="number" className="invalid">
-            A <b>number</b>{" "}
+          <p id="specialchar" style={specialValidated ? valid : invalid}>
+            <FontAwesomeIcon icon={specialValidated ? faCheck : faTimes} /> A <b>special character</b>{" "}
           </p>{" "}
-          <p id="length" className="invalid">
-            Minimum <b>8 characters</b>{" "}
+          <p id="length" style={lengthValidated ? valid : invalid}>
+            <FontAwesomeIcon icon={lengthValidated ? faCheck : faTimes} /> Minimum <b>8 characters</b>{" "}
           </p>{" "}
         </div>
       )}
     </>
   );
 };
-
-{
-  /* <div className="mx-auto h-52 bg-orange-500">
-      <input
-        className="border border-red-300"
-        name="username"
-        placeholder="enter username"
-      />
-      <input
-        placeholder="Enter Password"
-        className="border border-red-300"
-        type="password"
-        name="password"
-      />
-      <button>Login</button>
-
-      {children}
-    </div> */
-}
