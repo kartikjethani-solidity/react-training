@@ -64,17 +64,17 @@ export const LoginForm: FC<PropsWithChildren> = ({ children }) => {
       <div>
         <pre>{JSON.stringify(user, undefined, 2)}</pre>
         <form>
-          <label htmlFor="username">Username</label>
+          <label htmlFor="username">Username </label>
           <input
             value={user.username}
             type="text"
             name="username"
-            placeholder="Enter username"
+            placeholder="Enter username "
             required
             onChange={handleChange}
           />
 
-          <label htmlFor="password">Password</label>
+          <label htmlFor="password">Password </label>
           <input
             type="password"
             value={user.password}
