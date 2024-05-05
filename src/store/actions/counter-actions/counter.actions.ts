@@ -1,6 +1,6 @@
 // actions/counterActions.ts
 
-import { INCREMENT, DECREMENT } from "../types";
+import { INCREMENT, DECREMENT } from "../../types";
 
 export const increment = () => ({
   type: INCREMENT,

@@ -1,6 +1,4 @@
-// reducers/counterReducer.ts
-
-import { INCREMENT, DECREMENT } from "../../actions/types";
+import { INCREMENT, DECREMENT } from "../../types";
 
 const initialState = {
   count: 0,
