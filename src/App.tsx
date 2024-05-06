@@ -47,8 +47,8 @@ function App() {
   // );
   return (
     <>
-      <LoginForm></LoginForm>
-      {/* <SignUp /> */}
+      {/* <LoginForm></LoginForm> */}
+      <SignUp />
       {/* <ValidationForm /> */}
     </>
   );
