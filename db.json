@@ -6,6 +6,48 @@
       "password": "1234567",
       "email": "adfad@gmail.com",
       "phoneNumber": "1212121219"
+    },
+    {
+      "id": "1d4c",
+      "username": "harsh ",
+      "password": "1241241",
+      "email": "harsh@gmail.com",
+      "phoneNumber": "9999999999"
+    },
+    {
+      "id": "0609",
+      "username": "adfd",
+      "password": "sa",
+      "email": "sada",
+      "phoneNumber": "asd"
+    },
+    {
+      "id": "dd59",
+      "username": "",
+      "password": "",
+      "email": "",
+      "phoneNumber": ""
+    },
+    {
+      "id": "a37c",
+      "username": "",
+      "password": "",
+      "email": "",
+      "phoneNumber": ""
+    },
+    {
+      "id": "e80b",
+      "username": "",
+      "password": "",
+      "email": "",
+      "phoneNumber": ""
+    },
+    {
+      "id": "b40e",
+      "username": "",
+      "password": "",
+      "email": "",
+      "phoneNumber": ""
     }
   ]
 }

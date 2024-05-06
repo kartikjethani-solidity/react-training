@@ -1,5 +1,11 @@
 import React from "react";
-import { useState, ChangeEventHandler, FC, PropsWithChildren } from "react";
+import {
+  useState,
+  useEffect,
+  ChangeEventHandler,
+  FC,
+  PropsWithChildren,
+} from "react";
 
 type User = {
   username: string;
@@ -14,6 +20,12 @@ type Error = {
   phoneNumber?: string;
   disclaimer?: string;
 };
+type FirstLoad = {
+  username?: number;
+  password?: number;
+  email?: number;
+  phoneNumber?: number;
+};
 export const LoginForm: FC<PropsWithChildren> = ({ children }) => {
   const [user, setUser] = useState<User>({
     username: "",
@@ -22,47 +34,57 @@ export const LoginForm: FC<PropsWithChildren> = ({ children }) => {
     phoneNumber: "",
   });
   const [errorMessages, setErrorMessages] = useState<Error>({});
-  const [isDisclaimerAgreed, setDisclaimerAgreed] = useState(false);
-
+  const [isDisclaimerAgreed, setDisclaimerAgreed] = useState(true);
+  const [disclaimerFirstLoad, setDisclaimerFirstState] = useState(false);
+  const [firstLoads, setFirstLoad] = useState<FirstLoad>({
+    username: 1,
+    password: 1,
+    email: 1,
+    phoneNumber: 1,
+  });
+  // const [isFormPosted, setPostStatus]
   const handleChange: ChangeEventHandler<HTMLInputElement> = (e) => {
     const { name, value } = e.target;
     setUser((prev) => ({ ...prev, [name]: value }));
+    // validateForm();
+    setFirstLoad((prev) => ({ ...prev, [name]: 0 }));
   };
 
   const validateForm = () => {
     let errors: Error = {};
 
     if (!user.username || /\d/.test(user.username)) {
-      errors.username = "Username: ( !empty && only alphabets ) ";
+      if (!firstLoads.username)
+        errors.username = "Username: ( !empty and only alphabets ) ";
     }
 
     if (!user.password || user.password.length < 6) {
-      errors.password = "password.length >=6";
+      if (!firstLoads.password)
+        errors.password = "password: ( !empty and .length>5 ) ";
     }
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!user.email || !emailRegex.test(user.email)) {
-      errors.email = "Enter valid email address";
+      if (!firstLoads.email) errors.email = "Enter valid email address";
     }
 
     const phoneNumberRegex = /^(?:(?:\+?91[\-\s]?)?[0-9]{10})$/;
     if (!user.phoneNumber || !phoneNumberRegex.test(user.phoneNumber)) {
-      errors.phoneNumber = "Enter a valid 10-digit Indian phone number";
+      if (!firstLoads.phoneNumber)
+        errors.phoneNumber = "Enter a valid 10-digit Indian phone number";
     }
 
     if (!isDisclaimerAgreed) {
-      errors.disclaimer = "You must agree to the disclaimer";
+      if (!disclaimerFirstLoad)
+        errors.disclaimer = "You must agree to the disclaimer";
     }
 
     setErrorMessages(errors);
 
-    setErrorMessages(errors);
     return Object.keys(errors).length === 0;
   };
 
-  const handleSubmit = async () => {
-    if (!validateForm()) return;
-
+  const postFormData = async () => {
     try {
       const response = await fetch("http://localhost:5000/users", {
         method: "POST",
@@ -79,7 +101,20 @@ export const LoginForm: FC<PropsWithChildren> = ({ children }) => {
       console.log("error");
     }
   };
-
+  const handleSubmit = async () => {
+    if (!validateForm()) {
+      alert("invalid input");
+      return;
+    }
+    postFormData();
+  };
+  useEffect(() => {
+    validateForm();
+  });
+  const handleDisclaimer: ChangeEventHandler<HTMLInputElement> = (e) => {
+    setDisclaimerAgreed(e.target.checked);
+    setDisclaimerFirstState(false);
+  };
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full space-y-8">
@@ -192,8 +227,9 @@ export const LoginForm: FC<PropsWithChildren> = ({ children }) => {
             <input
               type="checkbox"
               id="disclaimer"
+              name="disclaimer"
               checked={isDisclaimerAgreed}
-              onChange={(e) => setDisclaimerAgreed(e.target.checked)}
+              onChange={handleDisclaimer}
             />
             <label
               htmlFor="disclaimer"
