@@ -4,19 +4,25 @@
       "id": "1",
       "isLoggedIn": true,
       "name": "Kartik Jethani",
-      "email": "kj@gmail.com"
+      "username": "kj",
+      "email": "kj@gmail.com",
+      "password": "123"
     },
     {
       "id": "2",
       "isLoggedIn": false,
       "name": "Shivansh",
-      "email": "shivansh@gmail.com"
+      "username": "s",
+      "email": "shivansh@gmail.com",
+      "password": "123"
     },
     {
       "id": "3",
       "isLoggedIn": true,
       "name": "Kamya",
-      "email": "kamya@gmail.com"
+      "username": "k",
+      "email": "kamya@gmail.com",
+      "password": "123"
     }
   ]
 }

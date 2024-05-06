@@ -1,9 +1,15 @@
 import { FC, PropsWithChildren, useState } from "react";
 import { H1 } from "../h1";
+// import axios from "axios";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck, faTimes } from "@fortawesome/free-solid-svg-icons";
 
 export const LoginForm: FC<PropsWithChildren> = ({ children }) => {
+  // const [username, setUsername] = useState("");
+  // const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+
   type User = {
     username: string;
     password: string;
@@ -31,6 +37,17 @@ export const LoginForm: FC<PropsWithChildren> = ({ children }) => {
     console.log(user);
   };
 
+  // const handleLogin: any = async () => {
+  //   try {
+  //     const response = await axios.post("db.json", {
+  //       user,
+  //       password,
+  //     });
+  //     console.log("Login successful:", response.data);
+  //   } catch (error) {
+  //     setError("Invalid username or password");
+  //   }
+  // };
   const validatePassword = (e: any) => {
     const password = e.target.value;
 
@@ -89,7 +106,7 @@ export const LoginForm: FC<PropsWithChildren> = ({ children }) => {
             }}
           />
 
-          <button type="submit" value="Submit" onSubmit={handleSubmit}>
+          <button type="submit" value="Submit" onSubmit={handleChange}>
             Submit
           </button>
         </form>
