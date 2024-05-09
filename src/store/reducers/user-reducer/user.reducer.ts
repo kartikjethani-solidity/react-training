@@ -5,7 +5,6 @@ const initialState = {
 };
 
 export const userReducer = (state = initialState, action: any) => {
-  console.log(22222, action);
   switch (action.type) {
     case UPDATE_USER:
       return { ...state, name: action.payload };

@@ -1,7 +1,7 @@
 import { Dispatch } from "redux";
 import { INCREMENT, DECREMENT, UPDATE_USER } from "../types";
 
-export const increment = () => ({
+export const incrementCounterByOne = () => ({
   type: INCREMENT,
 });
 

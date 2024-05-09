@@ -1,30 +1,46 @@
-import React, { useEffect } from "react";
+import React, { FC, useEffect } from "react";
 import { connect } from "react-redux";
-import { increment, decrement, fetchUserByIdThunk } from "../../store/actions";
+import {
+  incrementCounterByOne,
+  decrement,
+  fetchUserByIdThunk,
+} from "../../store/actions";
+import { RootState } from "../../store";
 
-interface CounterProps {
+type CounterProps = {
   count: number;
-  increment: () => void;
+  incrementCounter: () => void;
   decrement: () => void;
   fetchUserById: (userId: string) => void;
-}
+};
+
+// type UserProps = {
+//   name: string;
+//   updateName: (name: string) => void;
+// };
+
+// const User: FC<UserProps> = ({ name }) => {
+//   return <h2>My name is {name}</h2>;
+// };
+
+// <User name={"Kartik"} updateName={() => {}} />;
 
 const Counter: React.FC<CounterProps> = ({
   count,
-  increment,
+  incrementCounter,
   decrement,
   fetchUserById,
 }) => {
-  useEffect(() => {
-    fetchUserById("123");
-  }, [fetchUserById]);
+  // useEffect(() => {
+  //   fetchUserById("123");
+  // }, [fetchUserById]);
 
   return (
     <div>
-      <h2>Count: {count}</h2>
+      <h2>Counter current value: {count}</h2>
       <button
         className="mt-10 pointer-events-auto rounded-md bg-indigo-600 px-3 py-2 text-[0.8125rem] font-semibold leading-5 text-white hover:bg-indigo-500"
-        onClick={increment}
+        onClick={incrementCounter}
       >
         Increment
       </button>
@@ -38,12 +54,12 @@ const Counter: React.FC<CounterProps> = ({
   );
 };
 
-const mapStateToProps = (state: any) => ({
+const mapStateToProps = (state: RootState) => ({
   count: state.counter.count,
 });
 
 const mapDispatchToProps = (dispatch: any) => ({
-  increment: () => dispatch(increment()),
+  incrementCounter: () => dispatch(incrementCounterByOne()),
   decrement: () => dispatch(decrement()),
   fetchUserById: (userId: string) => dispatch(fetchUserByIdThunk(userId)),
 });
