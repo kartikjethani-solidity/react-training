@@ -1,14 +1,24 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { increment, decrement } from "../../store/actions";
+import { increment, decrement, fetchUserByIdThunk } from "../../store/actions";
 
 interface CounterProps {
   count: number;
   increment: () => void;
   decrement: () => void;
+  fetchUserById: (userId: string) => void;
 }
 
-const Counter: React.FC<CounterProps> = ({ count, increment, decrement }) => {
+const Counter: React.FC<CounterProps> = ({
+  count,
+  increment,
+  decrement,
+  fetchUserById,
+}) => {
+  useEffect(() => {
+    fetchUserById("123");
+  }, [fetchUserById]);
+
   return (
     <div>
       <h2>Count: {count}</h2>
@@ -29,7 +39,13 @@ const Counter: React.FC<CounterProps> = ({ count, increment, decrement }) => {
 };
 
 const mapStateToProps = (state: any) => ({
-  count: state.counterReducer.count,
+  count: state.counter.count,
 });
 
-export default connect(mapStateToProps, { increment, decrement })(Counter);
+const mapDispatchToProps = (dispatch: any) => ({
+  increment: () => dispatch(increment()),
+  decrement: () => dispatch(decrement()),
+  fetchUserById: (userId: string) => dispatch(fetchUserByIdThunk(userId)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Counter);
