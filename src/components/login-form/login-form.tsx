@@ -1,14 +1,12 @@
 
 import React from "react";
 import { useState, ChangeEventHandler, FC, PropsWithChildren } from "react";
-
 type User = {
   username: string;
   password: string;
   email: string;
   phoneNumber: string;
 };
-
 export const LoginForm: FC<PropsWithChildren> = () => {
   const [user, setUser] = useState<User>({
     username: "",
@@ -82,7 +80,7 @@ export const LoginForm: FC<PropsWithChildren> = () => {
           <div className="form-group mt-3 ">
             <input
               id="email"
-              className="border border-gray-300 rounded-sm px-2 py-1 border mb-2 w-1/3"
+              className="border border-gray-300 rounded-sm px-2 py-1 mb-2 w-1/3"
               value={user.username}
               onChange={handleChange}
               name="username"
