@@ -6,6 +6,7 @@ import { H1 } from "./components/h1";
 import { UserListing } from "./components/user-listing";
 import { Modal } from "./components/modal";
 import { LoginForm } from "./components/login-form";
+import Counter from "./components/counter";
 
 function App() {
   const signIn = () => {
@@ -37,6 +38,8 @@ function App() {
   const [isLoggedIn, setLoggedIn] = useState<boolean>(false);
   const [user, setUser] = useState<User>();
   const myClassName = isLoggedIn ? "a" : "b";
+
+  return <Counter />;
 
   return (
     <Modal title="Login Modal">
