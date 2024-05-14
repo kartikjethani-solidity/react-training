@@ -54,9 +54,12 @@ const Counter: React.FC<CounterProps> = ({
   );
 };
 
-const mapStateToProps = (state: RootState) => ({
-  count: state.counter.count,
-});
+const mapStateToProps = (state: RootState) => {
+  console.log("mapStateToProps");
+  return {
+    count: state.counter.count,
+  };
+};
 
 const mapDispatchToProps = (dispatch: any) => ({
   incrementCounter: () => dispatch(incrementCounterByOne()),
