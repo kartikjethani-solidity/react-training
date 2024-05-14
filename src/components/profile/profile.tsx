@@ -27,3 +27,4 @@ export const Profile: FC<ProfileProps> = ({ user, clickHandler }) => {
     </>
   );
 };
+//added comment
