@@ -6,38 +6,39 @@ import { H1 } from "./components/h1";
 import { UserListing } from "./components/user-listing";
 import { Modal } from "./components/modal";
 import { LoginForm } from "./components/login-form";
-import Counter from "./components/counter";
+import { Counter } from "./components/counter-toolkit";
+// import Counter from "./components/counter";
 
 function App() {
-  const signIn = () => {
-    // api call to sign the user in which returns true or false
-    const user = {
-      isLoggedIn: true,
-      name: "Kartik",
-      id: 1,
-      email: "kj@gmail.com",
-    };
+  // const signIn = () => {
+  //   // api call to sign the user in which returns true or false
+  //   const user = {
+  //     isLoggedIn: true,
+  //     name: "Kartik",
+  //     id: 1,
+  //     email: "kj@gmail.com",
+  //   };
 
-    // useReducer
+  //   // useReducer
 
-    setLoggedIn(user.isLoggedIn);
-    setUser(user);
-  };
+  //   setLoggedIn(user.isLoggedIn);
+  //   setUser(user);
+  // };
 
-  const users = [
-    { isLoggedIn: true, name: "Kartik", id: 1, email: "kj@gmail.com" },
-    {
-      isLoggedIn: false,
-      name: "Shivansh",
-      id: 1,
-      email: "shivansh@gmail.com",
-    },
-    { isLoggedIn: true, name: "Kamya", id: 1, email: "kamya@gmail.com" },
-  ];
-  // STATE
-  const [isLoggedIn, setLoggedIn] = useState<boolean>(false);
-  const [user, setUser] = useState<User>();
-  const myClassName = isLoggedIn ? "a" : "b";
+  // const users = [
+  //   { isLoggedIn: true, name: "Kartik", id: 1, email: "kj@gmail.com" },
+  //   {
+  //     isLoggedIn: false,
+  //     name: "Shivansh",
+  //     id: 1,
+  //     email: "shivansh@gmail.com",
+  //   },
+  //   { isLoggedIn: true, name: "Kamya", id: 1, email: "kamya@gmail.com" },
+  // ];
+  // // STATE
+  // const [isLoggedIn, setLoggedIn] = useState<boolean>(false);
+  // const [user, setUser] = useState<User>();
+  // const myClassName = isLoggedIn ? "a" : "b";
 
   return <Counter />;
 
