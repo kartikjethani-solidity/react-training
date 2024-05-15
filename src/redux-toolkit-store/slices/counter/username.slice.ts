@@ -13,12 +13,12 @@ export const usernameSlice = createSlice({
   name: "username",
   initialState,
   reducers: {
-    incrementByAmount: (state, action: PayloadAction<string>) => {
+    modifyUserName: (state, action: PayloadAction<string>) => {
       state.value = action.payload;
     },
   },
 });
 
-export const { incrementByAmount } = usernameSlice.actions;
+export const { modifyUserName } = usernameSlice.actions;
 
 export default usernameSlice.reducer;
