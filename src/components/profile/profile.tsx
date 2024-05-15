@@ -16,7 +16,7 @@ export const Profile: FC<ProfileProps> = ({ user, clickHandler }) => {
   return (
     <>
       <div
-        className="bg-red-300 flex items-center m-5 cursor-pointer overflow-hidden shadow-lg justify-center rounded-3xl h-40 w-40
+        className="bg-emerald-500 border-r-gray-50 flex items-center m-5 cursor-pointer overflow-hidden shadow-lg justify-center rounded-3xl h-40 w-40
         font-semibold "
         onClick={setCurrentUser}
       >

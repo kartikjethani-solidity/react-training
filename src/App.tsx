@@ -49,26 +49,12 @@ function App() {
           // }}
         />
       ) : (
-        <button
-          onClick={signIn}
-          className="text-xl bg-blue-500 text-white py-2 px-4 rounded-md mb-8 mt-8"
-        >
+        <button onClick={signIn} className="text-xl bg-fuchsia-700 text-white py-2 px-4 rounded-md mb-8 mt-8">
           Sign In
         </button>
       )}
 
-      <div className={myClassName}>Hello</div>
-
-      {/* <Profile
-        email="shivansh@abc.com"
-        id={2}
-        name="Shivansh"
-        address={{
-          firstLine: "Corenthum",
-          city: "Noida",
-          state: "UP",
-        }}
-      /> */}
+      <div className="text-xl">Hello</div>
 
       <div style={{ marginTop: "25px" }}>
         <H1 heading="List of all users" />
