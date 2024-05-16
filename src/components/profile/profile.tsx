@@ -14,16 +14,11 @@ export const Profile: FC<ProfileProps> = ({ user, clickHandler }) => {
   };
 
   return (
-    <>
-      <div
-        className="bg-red-300 flex-row items-center m-20 h-20 w-20 cursor-pointer"
-        onClick={setCurrentUser}
-      >
-        <H1 heading={user.name} />
-      </div>
-      {/* <h2>, {email}</h2>
-      <div>{address?.firstLine}</div>
-      <div>Is the user Logged in - {isLoggedIn ? "Yes" : "No"}</div> */}
-    </>
+    <div
+      className="bg-green-400  flex   items-center justify-center m-10 h-24 w-60 cursor-pointer rounded-lg shadow-lg transition duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-2xl"
+      onClick={setCurrentUser}
+    >
+      <span className="text-white flex text-lg font-semibold">{user.name}</span>
+    </div>
   );
 };
