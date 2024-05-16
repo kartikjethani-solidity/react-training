@@ -1,39 +1,20 @@
-import { url } from "inspector";
-import { ChangeEventHandler, FC, PropsWithChildren, useState } from "react";
+import { ChangeEventHandler } from "react";
+import React from "react";
+import type { RootState } from "../../redux-toolkit-store";
+import { useSelector, useDispatch } from "react-redux";
+import { incrementByAmount } from "../../redux-toolkit-store/slices/counter/username.slice";
 
-export const LoginForm: FC<PropsWithChildren> = ({ children }) => {
-  //   const [username, setUsername] = useState<string>("kartik@gmail.com");
-  //   const [password, setPassword] = useState<string>("");
+// type User = {
+//   username: string;
+//   password: string;
+// };
 
-  type User = {
-    username: string;
-    password: string;
-  };
+export const LoginForm = () => {
+  // const [isDisclaimerAgreed, setDisclaimerAgreed] = useState(false);
 
-  const [isDisclaimerAgreed, setDisclaimerAgreed] = useState(false);
+  // const [user, setUser] = useState<User>({ username: "", password: "" });
 
-  const [user, setUser] = useState<User>({ username: "", password: "" });
-
-  //   const handleUsernameChange: React.ChangeEventHandler<HTMLInputElement> = (
-  //     e
-  //   ) => {
-  //     setUsername(e.target.value);
-  //   };
-
-  //   const handlePasswordChange: React.ChangeEventHandler<HTMLInputElement> = (
-  //     e
-  //   ) => {
-  //     setPassword(e.target.value);
-  //   };
-
-  //   const handleChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
-  //     const { name, value } = e.target;
-  //     if (name === "username") {
-  //       setUsername(value);
-  //     } else if (name === "password") {
-  //       setPassword(value);
-  //     }
-  //   };
+  const username = useSelector((state: RootState) => state.username.value);
 
   const handleChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
     const { name, value } = e.target;
