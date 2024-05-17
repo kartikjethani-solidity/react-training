@@ -2,14 +2,19 @@ import React, { ChangeEventHandler } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import type { RootState } from "../../redux-toolkit-store";
 import { incrementByAmount } from "../../redux-toolkit-store/slices/counter/username.slice";
+import { incrementByAmount1 } from "../../redux-toolkit-store/slices/password.slice";
 
 export const LoginForm = () => {
   const username = useSelector((state: RootState) => state.username.value);
+  const password = useSelector((state: RootState) => state.password.value);
   const dispatch = useDispatch();
   const handleChange: ChangeEventHandler<HTMLInputElement> = (e) => {
     dispatch(incrementByAmount(e.target.value));
   };
 
+  const handlePasswordChange: ChangeEventHandler<HTMLInputElement> = (e) => {
+    dispatch(incrementByAmount1(e.target.value));
+  };
   const validateUsername = (): boolean => {
     if (!username || /\d/.test(username)) {
       console.log(
@@ -55,6 +60,13 @@ export const LoginForm = () => {
         className="border border-red-300"
         name="username"
         placeholder="Enter username"
+      />
+      <input
+        value={password}
+        onChange={handlePasswordChange}
+        className="border border-red-300"
+        name="password"
+        placeholder="Enter password"
       />
       <button onClick={handleSubmit}>Submit</button>
     </div>

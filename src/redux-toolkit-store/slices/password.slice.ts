@@ -15,12 +15,12 @@ export const passwordSlice = createSlice({
   name: "password",
   initialState,
   reducers: {
-    incrementByAmount: (state, action: PayloadAction<string>) => {
+    incrementByAmount1: (state, action: PayloadAction<string>) => {
       state.value = action.payload;
     },
   },
 });
 
-export const { incrementByAmount } = passwordSlice.actions;
+export const { incrementByAmount1 } = passwordSlice.actions;
 
 export default passwordSlice.reducer;
