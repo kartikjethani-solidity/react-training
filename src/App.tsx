@@ -6,7 +6,7 @@ import { H1 } from "./components/h1";
 import { UserListing } from "./components/user-listing";
 import { Modal } from "./components/modal";
 import { LoginForm } from "./components/login-form";
-import { Counter } from "./components/counter-toolkit";
+// import { Counter } from "./components/counter-toolkit";
 // import Counter from "./components/counter";
 
 function App() {
@@ -54,15 +54,19 @@ function App() {
   // return <Counter />;
 
   return (
-    <Modal title="Login Modal">
-      <LoginForm>
-        {/* <Modal title="Edit Profile Pic">
-          <h1></h1>
-        </Modal> */}
-      </LoginForm>
-    </Modal>
-  );
+    // <Modal title="Login Modal">
+    <LoginForm />
 
+    // </Modal>
+  );
+  {
+    /* <Modal title="Edit Profile Pic">
+          <h1></h1>
+        </Modal> */
+  }
+  {
+    /* </LoginForm> */
+  }
   // return (
   //   <div className="App">
   //     {user ? (
