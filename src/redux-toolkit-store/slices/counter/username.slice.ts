@@ -1,24 +1,30 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 
-export interface userNameState {
-  value: string;
-  payload: string;
+
+export interface userDetail {
+  userid: string;
+  userPassword:string;
+  payload:string;
 }
-const initialState: userNameState = {
-  value: "",
-  payload: "",
+const initialState: userDetail = {
+  userid: "",
+  userPassword:"",
+  payload:"",
 };
 export const usernameSlice = createSlice({
-  name: "username",
+  name: "user",
   initialState,
   reducers: {
-    incrementByAmount: (state, action: PayloadAction<string>) => {
-      state.value = action.payload;
+    userNameUpdate: (state, action: PayloadAction<string>) => {
+      state.userid = action.payload;
+    },
+    userPasswordUpdate: (state, action: PayloadAction<string>) => {
+      state.userPassword = action.payload;
     },
   },
 });
 
-export const { incrementByAmount } = usernameSlice.actions;
+export const { userNameUpdate, userPasswordUpdate} = usernameSlice.actions;
 
 export default usernameSlice.reducer;

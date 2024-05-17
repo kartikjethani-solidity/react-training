@@ -1,13 +1,18 @@
 import React, { ChangeEventHandler } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import type { RootState } from "../../redux-toolkit-store";
-import { incrementByAmount } from "../../redux-toolkit-store/slices/counter/username.slice";
+import { userNameUpdate, userPasswordUpdate } from "../../redux-toolkit-store/slices/counter/username.slice";
 
 export const LoginForm = () => {
-  const username = useSelector((state: RootState) => state.username.value);
+  const username = useSelector((state: RootState) => state.username.userid);
   const dispatch = useDispatch();
-  const handleChange: ChangeEventHandler<HTMLInputElement> = (e) => {
-    dispatch(incrementByAmount(e.target.value));
+  const handleChangeUsername: ChangeEventHandler<HTMLInputElement> = (e) => {
+    dispatch(userNameUpdate(e.target.value));
+  };
+
+  const userPassword = useSelector((state: RootState) => state.username.userPassword);
+  const handleChangePassword: ChangeEventHandler<HTMLInputElement> = (e) => {
+    dispatch(userPasswordUpdate(e.target.value));
   };
 
   const validateUsername = (): boolean => {
@@ -48,15 +53,34 @@ export const LoginForm = () => {
   };
 
   return (
-    <div>
+    <div className="border h-32 w-80 mx-auto align-middle bg-slate-500 m-5 rounded flex justify-center flex-col">
+    <div className="">
       <input
         value={username}
-        onChange={handleChange}
-        className="border border-red-300"
+        onChange={handleChangeUsername}
+        className="border m-1 border-red-300 rounded"
         name="username"
         placeholder="Enter username"
       />
-      <button onClick={handleSubmit}>Submit</button>
     </div>
+        <div>
+        <input
+          value={userPassword}
+          onChange={handleChangePassword}
+          className="border m-1 border-red-300 rounded"
+          name="userPassword"
+          type="password"
+          placeholder="Enter user Password"
+        />
+      </div>
+      <div>
+      <button className="bg-orange-500 m-1 rounded" onClick={handleSubmit}>Submit</button>
+      </div>
+
+
+      
+      </div>
+
+      
   );
 };
