@@ -1,35 +1,37 @@
 import "./App.css";
 import { LoginForm } from "./components/login-form";
-<<<<<<< HEAD
+import { useState } from "react";
+import { UserDetails } from "./components/user-listing/user-details/user-details";
+// import { User } from "./types/user.type";
 // import { Counter } from "./components/counter-toolkit";
 // import Counter from "./components/counter";
 
 function App() {
-  const [isLoggedIn, setLoggedIn] = useState<boolean>(false);
-  const [user, setUser] = useState<User>();
+  // const [isLoggedIn, setLoggedIn] = useState<boolean>(false);
+  // const [user, setUser] = useState<User>();
 
-  const users = [
-    { isLoggedIn: true, name: "Kartik", id: 1, email: "kj@gmail.com" },
-    {
-      isLoggedIn: false,
-      name: "Shivansh",
-      id: 1,
-      email: "shivansh@gmail.com",
-    },
-    { isLoggedIn: true, name: "Kamya", id: 1, email: "kamya@gmail.com" },
-  ];
+  // const users = [
+  //   { isLoggedIn: true, name: "Kartik", id: 1, email: "kj@gmail.com" },
+  //   {
+  //     isLoggedIn: false,
+  //     name: "Shivansh",
+  //     id: 1,
+  //     email: "shivansh@gmail.com",
+  //   },
+  //   { isLoggedIn: true, name: "Kamya", id: 1, email: "kamya@gmail.com" },
+  // ];
 
-  const signIn = () => {
-    const user = {
-      isLoggedin: true,
-      name: "Dhruv",
-      id: 1,
-      email: "dhruv@worksimpli",
-    };
+  // const signIn = () => {
+  //   const user = {
+  //     isLoggedin: true,
+  //     name: "Dhruv",
+  //     id: 1,
+  //     email: "dhruv@worksimpli",
+  //   };
 
-    setLoggedIn(user.isLoggedin);
-    setUser(user);
-  };
+  //   setLoggedIn(user.isLoggedin);
+  //   setUser(user);
+  // };
 
   // const users = [
   //   { isLoggedIn: true, name: "Kartik", id: 1, email: "kj@gmail.com" },
@@ -44,7 +46,7 @@ function App() {
   // STATE
   // const [isLoggedIn, setLoggedIn] = useState<boolean>(false);
   // const [user, setUser] = useState<User>();
-  const myClassName = isLoggedIn ? "a" : "b";
+  // const myClassName = isLoggedIn ? "a" : "b";
 
   // return <Counter />;
 
@@ -123,12 +125,7 @@ function App() {
   //     </div>
   //   </div>
   // );
-=======
-// import Counter from "./components/counter";
-
-function App() {
-  return <LoginForm />;
->>>>>>> 6b1f4d66cc8f9d831d15d825c8e3e75e429f2b28
+  // import Counter from "./components/counter";
 }
 
 export default App;

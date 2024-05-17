@@ -1,7 +1,6 @@
 {
   "users": [
     {
-<<<<<<< HEAD
       "id": "1",
       "isLoggedIn": true,
       "name": "Kartik Jethani",
@@ -18,10 +17,6 @@
       "isLoggedIn": true,
       "name": "Harshit Mishra",
       "email": "Harshit@gmail.com"
-=======
-      "name": "lol",
-      "password": 1231
->>>>>>> 6b1f4d66cc8f9d831d15d825c8e3e75e429f2b28
     }
   ]
 }
