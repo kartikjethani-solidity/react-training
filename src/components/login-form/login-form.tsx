@@ -17,7 +17,9 @@ export const LoginForm: FC<PropsWithChildren> = ({ children }) => {
 
   const initialValues = { username: "", password: "" };
   const [user, setUser] = useState<User>(initialValues);
+
   const [PasswordFormat, setPasswordFormat] = useState<boolean>(false);
+
   const [lowerValidated, setLowerValidated] = useState(false);
   const [upperValidated, setUpperValidated] = useState(false);
   const [numberValidated, setNumberValidated] = useState(false);
@@ -68,9 +70,25 @@ export const LoginForm: FC<PropsWithChildren> = ({ children }) => {
     setSpecialValidated(special.test(password));
     setLengthValidated(length.test(password));
   };
-  const handleSubmit = (e: any) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
-    // setFormErrors(validate(user));
+    if (!validatePassword) return;
+
+    try {
+      const response = await fetch("http://localhost:5000/users", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(user),
+      });
+
+      const data = await response.json();
+      // data.then(() => console.log("Submission successful", data));
+    } catch (error) {
+      console.error("Error submitting form", error);
+      console.log("error");
+    }
   };
 
   const invalid = { color: "#999" }; // Dull text color
@@ -106,7 +124,7 @@ export const LoginForm: FC<PropsWithChildren> = ({ children }) => {
             }}
           />
 
-          <button type="submit" value="Submit" onSubmit={handleChange}>
+          <button type="submit" onSubmit={handleSubmit}>
             Submit
           </button>
         </form>

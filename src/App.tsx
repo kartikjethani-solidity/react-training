@@ -45,13 +45,13 @@ function App() {
   //     </LoginForm>
   //   </Modal>
   // );
-  return (
-    <>
-      {/* <LoginForm></LoginForm> */}
-      <SignUp />
-      {/* <ValidationForm /> */}
-    </>
-  );
+  // return (
+  //   <>
+  //     {/* <LoginForm></LoginForm> */}
+  //     <SignUp />
+  //     {/* <ValidationForm /> */}
+  //   </>
+  // );
   // return (
   //   <div className="App">
   //     {user ? (
@@ -86,6 +86,8 @@ function App() {
   //     </div>
   //   </div>
   // );
+
+  return <SignUp />;
 }
 
 export default App;
