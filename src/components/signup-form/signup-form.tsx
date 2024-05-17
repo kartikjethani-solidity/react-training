@@ -190,7 +190,7 @@ export function SignUp() {
 }
 */
 
-import React, { ChangeEventHandler } from "react";
+import React, { ChangeEventHandler, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import type { RootState } from "../../redux-toolkit-store";
 import { usernameHandle } from "../../redux-toolkit-store/slices/username";
@@ -206,6 +206,9 @@ export const SignUp = () => {
   const confirmPassword = useSelector((state: RootState) => state.confirmPassword.value);
 
   const dispatch = useDispatch();
+  const handleChange: ChangeEventHandler<HTMLInputElement> = (e) => {
+    dispatch(usernameHandle(e.target.value));
+  };
 
   const [formError, setFormError] = useState({
     username: "",
@@ -213,28 +216,19 @@ export const SignUp = () => {
     confirmPassword: "",
   });
 
-  const handleUserInput = (name: string, value: string) => {
-    setFormInput({
-      ...formInput,
-      [name]: value,
-    });
-  };
-
-  const handleUsernameChange = (username: string) => {
-    setFormInput({ ...formInput, username });
-  };
-
-  const isUsernameValid = () => {
+  const isUsernameValid = (): boolean => {
     if (!username) {
       setFormError({
         ...formError,
         username: "Enter valid username address",
       });
+      return false;
     } else {
       setFormError({
         ...formError,
         username: "",
       });
+      return true;
     }
   };
 
@@ -252,36 +246,44 @@ export const SignUp = () => {
   //   }
   // };
 
-  const isConfirmPasswordValid = () => {
-    if (formInput.confirmPassword != formInput.password) {
-      setFormError({
-        ...formError,
-        confirmPassword: "Password and confirm password should be same",
-      });
-    } else {
-      setFormError({
-        ...formError,
-        confirmPassword: "",
-      });
-    }
-  };
+  // const isConfirmPasswordValid = () => {
+  //   if (formInput.confirmPassword != formInput.password) {
+  //     setFormError({
+  //       ...formError,
+  //       confirmPassword: "Password and confirm password should be same",
+  //     });
+  //   } else {
+  //     setFormError({
+  //       ...formError,
+  //       confirmPassword: "",
+  //     });
+  //   }
+  // };
 
-  const handleSubmit = async () => {
-    // if (!validateFormInput()) return;
-
+  const postFormData = async () => {
     try {
       const response = await fetch("http://localhost:3000/users", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formInput),
+        body: JSON.stringify({ name: username, password: 123 }),
       });
 
+      if (!response.ok) {
+        throw new Error(`Error: ${response.statusText}`);
+      }
+
       const data = await response.json();
+      console.log("Submission successful", data);
     } catch (error) {
       console.error("Error submitting form", error);
-      console.log("error");
+    }
+  };
+
+  const handleSubmit = () => {
+    if (isUsernameValid()) {
+      postFormData();
     }
   };
 
@@ -292,10 +294,8 @@ export const SignUp = () => {
       <form>
         <p className="label">Username</p>
         <input
-          value={formInput.username}
-          onChange={({ target }) => {
-            handleUserInput(target.name, target.value);
-          }}
+          value={username}
+          onChange={handleChange}
           onBlur={isUsernameValid}
           name="username"
           type="text"
@@ -303,7 +303,7 @@ export const SignUp = () => {
           placeholder="Enter username"
         />
         <p className="error-message">{formError.username}</p>
-        <p className="label">Password</p>
+        {/* <p className="label">Password</p>
         <input
           value={formInput.password}
           onChange={({ target }) => {
@@ -315,8 +315,8 @@ export const SignUp = () => {
           className="input"
           placeholder="Enter Password"
         />
-        <p className="error-message">{formError.password}</p>
-        <p className="label">Confirm Password</p>
+        <p className="error-message">{formError.password}</p> */}
+        {/* <p className="label">Confirm Password</p>
         <input
           value={formInput.confirmPassword}
           onChange={({ target }) => {
@@ -328,13 +328,8 @@ export const SignUp = () => {
           className="input"
           placeholder="Confirm Password"
         />
-        <p className="error-message">{formError.confirmPassword}</p>
-        <button
-          type="button"
-          // onClick={addDetails}
-        >
-          Sign Up
-        </button>{" "}
+        <p className="error-message">{formError.confirmPassword}</p> */}
+        <button onClick={handleSubmit}>Submit</button>
       </form>
     </>
   );
