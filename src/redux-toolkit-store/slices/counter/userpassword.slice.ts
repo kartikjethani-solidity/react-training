@@ -15,12 +15,12 @@ export const userPasswordSlice = createSlice({
   name: "Password",
   initialState,
   reducers: {
-    modifyUserName: (state, action: PayloadAction<string>) => {
+    modifyUserPassword: (state, action: PayloadAction<string>) => {
       state.value = action.payload;
     },
   },
 });
 
-export const { modifyUserName } = userPasswordSlice.actions;
+export const { modifyUserPassword } = userPasswordSlice.actions;
 
 export default userPasswordSlice.reducer;
