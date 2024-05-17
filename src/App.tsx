@@ -1,7 +1,7 @@
 import "./App.css";
 import { LoginForm } from "./components/login-form";
 import { useState } from "react";
-import { UserDetails } from "./components/user-listing/user-details/user-details";
+// import { UserDetails } from "./components/user-listing/user-details/user-details";
 // import { User } from "./types/user.type";
 // import { Counter } from "./components/counter-toolkit";
 // import Counter from "./components/counter";
@@ -50,20 +50,8 @@ function App() {
 
   // return <Counter />;
 
-  return (
-    // <Modal title="Login Modal">
-    <LoginForm />
+  return <LoginForm />;
 
-    // </Modal>
-  );
-  {
-    /* <Modal title="Edit Profile Pic">
-          <h1></h1>
-        </Modal> */
-  }
-  {
-    /* </LoginForm> */
-  }
   // return (
   //   <div className="App">
   //     {user ? (
