@@ -3,7 +3,6 @@ import { User } from "../../types/user";
 import { Profile } from "../profile";
 import { H1 } from "../h1";
 import { UserDetails } from "./user-details";
-import { calculationPromise } from "../../utils/promises";
 
 type Props = {
   users: Array<User>;
@@ -14,22 +13,11 @@ export const UserListing = () => {
   const [selectedUser, setSelectedUser] = useState<User>();
 
   useEffect(() => {
-    // consuming a promise
-    calculationPromise
-      .then((resp) => {
-        console.log(resp);
-      })
-      .catch((err) => console.log(err))
-      .finally(() => {
-        console.log("inside finally block");
-      });
-
     fetch("http://localhost:3000/users")
       .then((response) => response.json())
       .then((items) => {
         setUsers(items);
-      })
-      .catch((errorMessage) => console.error(errorMessage));
+      });
   }, []);
 
   const setUserFromProfile = (user: User) => {
@@ -38,7 +26,7 @@ export const UserListing = () => {
 
   return (
     <>
-      <div className="flex justify-center">
+      <div className="flex m-2 border rounded bg-slate-100">
         {users.map((user) => {
           return <Profile user={user} clickHandler={setSelectedUser} />;
         })}
@@ -50,7 +38,9 @@ export const UserListing = () => {
             id={selectedUser.id}
             email={selectedUser.email}
             name={selectedUser.name}
+            phone={selectedUser.phone}
             isLoggedIn={selectedUser.isLoggedIn}
+            address={selectedUser.address}
           />
         )}
       </div>

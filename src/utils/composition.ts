@@ -1,30 +1,23 @@
-const swimmer = {
-  swim() {
-    // @ts-ignore
-    console.log(`${this.name} is a swimmer`);
-  },
-};
+const swimmer={
+    swim(){
+        console.log(`{this.name} is a runner`);
+    }
+}
 
-const runner = {
-  run() {
-    // @ts-ignore
-    console.log(`${this.name} is a runner`);
-  },
-};
+const runner={
+    run(){
+        console.log(`{this.name} is a runner`);
+    }
+}
 
-const human1 = {
-  //  modal
-  name: "Kartik",
-  ...swimmer, // login
-};
+const human1={
+    name:"uday",
+    ...runner,
+    ...swimmer
+}
 
-const human2 = {
-  name: "Akansha",
-  ...runner, // edit pic
-};
-
-const human3 = {
-  name: "Dhruv",
-};
+human1.run();
+human1.swim();
+human1.name;
 
 export {};

@@ -1,7 +1,7 @@
 export type Address = {
-  firstLine: string;
-  zipcode?: number;
+  houseNo: string;
+  zipcode: number;
   state: string;
   city: string;
-  country?: string;
+  country:string;
 };
