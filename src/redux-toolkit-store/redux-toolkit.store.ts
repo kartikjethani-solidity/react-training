@@ -1,7 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import usernameReducer from "./slices/counter/username.slice";
-import userPasswordReducer from "./slices/counter/username.slice";
-import userEmailReducer from "./slices/counter/username.slice";
+import userPasswordReducer from "./slices/counter/userpassword.slice";
+import userEmailReducer from "./slices/counter/useremail.slice";
 
 export const store = configureStore({
   reducer: {
