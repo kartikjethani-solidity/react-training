@@ -1,5 +1,4 @@
 import { configureStore } from "@reduxjs/toolkit";
-import counterReducer from "./slices/counter/counter.slice";
 import usernameReducer from "./slices/counter/username.slice";
 
 export const store = configureStore({

@@ -1,11 +1,6 @@
-import { useEffect, useState } from "react";
 import "./App.css";
-import { Profile } from "./components/profile";
-import { User } from "./types/user";
-import { H1 } from "./components/h1";
-import { UserListing } from "./components/user-listing";
-import { Modal } from "./components/modal";
 import { LoginForm } from "./components/login-form";
+<<<<<<< HEAD
 // import { Counter } from "./components/counter-toolkit";
 // import Counter from "./components/counter";
 
@@ -128,6 +123,12 @@ function App() {
   //     </div>
   //   </div>
   // );
+=======
+// import Counter from "./components/counter";
+
+function App() {
+  return <LoginForm />;
+>>>>>>> 6b1f4d66cc8f9d831d15d825c8e3e75e429f2b28
 }
 
 export default App;

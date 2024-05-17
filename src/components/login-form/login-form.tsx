@@ -1,10 +1,16 @@
+<<<<<<< HEAD
 import { ChangeEventHandler } from "react";
 import React from "react";
 import { useState } from "react";
 import type { RootState } from "../../redux-toolkit-store";
+=======
+import React, { ChangeEventHandler } from "react";
+>>>>>>> 6b1f4d66cc8f9d831d15d825c8e3e75e429f2b28
 import { useSelector, useDispatch } from "react-redux";
+import type { RootState } from "../../redux-toolkit-store";
 import { incrementByAmount } from "../../redux-toolkit-store/slices/counter/username.slice";
 
+<<<<<<< HEAD
 // const [formState, setFormState] = useState<LoginFormState>({
 //   email: "",
 //   password: "",
@@ -81,20 +87,51 @@ export const LoginForm: React.FC = () => {
 
     if (!validateForm()) return;
 
+=======
+export const LoginForm = () => {
+  const username = useSelector((state: RootState) => state.username.value);
+  const dispatch = useDispatch();
+  const handleChange: ChangeEventHandler<HTMLInputElement> = (e) => {
+    dispatch(incrementByAmount(e.target.value));
+  };
+
+  const validateUsername = (): boolean => {
+    if (!username || /\d/.test(username)) {
+      console.log(
+        "Username must not be empty and should contain only alphabets."
+      );
+      return false;
+    }
+    return true;
+  };
+
+  const postFormData = async () => {
+>>>>>>> 6b1f4d66cc8f9d831d15d825c8e3e75e429f2b28
     try {
       const response = await fetch("http://localhost:3000/users", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
+<<<<<<< HEAD
         body: JSON.stringify(user),
       });
 
+=======
+        body: JSON.stringify({ name: username, password: 123 }),
+      });
+
+      if (!response.ok) {
+        throw new Error(`Error: ${response.statusText}`);
+      }
+
+>>>>>>> 6b1f4d66cc8f9d831d15d825c8e3e75e429f2b28
       const data = await response.json();
       console.log("Submission successful", data);
     } catch (error) {
       console.error("Error submitting form", error);
     }
+<<<<<<< HEAD
   };
 
   return (
@@ -192,6 +229,26 @@ export const LoginForm: React.FC = () => {
           </button>
         </form>
       </div>
+=======
+  };
+
+  const handleSubmit = () => {
+    if (validateUsername()) {
+      postFormData();
+    }
+  };
+
+  return (
+    <div>
+      <input
+        value={username}
+        onChange={handleChange}
+        className="border border-red-300"
+        name="username"
+        placeholder="Enter username"
+      />
+      <button onClick={handleSubmit}>Submit</button>
+>>>>>>> 6b1f4d66cc8f9d831d15d825c8e3e75e429f2b28
     </div>
   );
 };
