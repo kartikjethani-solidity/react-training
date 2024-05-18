@@ -5,8 +5,8 @@ import { modifyUserName } from "../../redux-toolkit-store/slices/counter/usernam
 import { modifyUserPassword } from "../../redux-toolkit-store/slices/counter/userpassword.slice";
 
 export const LoginForm = () => {
-  const username = useSelector((usernamestate: RootState) => usernamestate.username.value);
-  const userPassword = useSelector((state: RootState) => state.userPassword.value);
+  const username = useSelector((state: RootState) => state.username.value);
+  const password = useSelector((state: RootState) => state.userPassword.value);
 
   const dispatch = useDispatch();
 
@@ -53,7 +53,7 @@ export const LoginForm = () => {
   };
 
   return (
-    <div>
+    <>
       <input
         value={username}
         onChange={handleUserNameChange}
@@ -61,7 +61,17 @@ export const LoginForm = () => {
         name="username"
         placeholder="Enter username"
       />
+
+      <input
+        value={password}
+        type="password"
+        onChange={handlePasswordChange}
+        className="border"
+        name="password"
+        placeholder="Enter password"
+      />
+
       <button onClick={handleSubmit}>Submit</button>
-    </div>
+    </>
   );
 };
