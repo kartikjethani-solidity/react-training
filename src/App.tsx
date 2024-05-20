@@ -7,6 +7,7 @@ import { UserListing } from "./components/user-listing";
 import { Modal } from "./components/modal";
 import { LoginForm } from "./components/login-form";
 import Counter from "./components/counter";
+import { ToolkitCounter } from "./components/toolkit-counter";
 
 function App() {
   const signIn = () => {
@@ -39,7 +40,9 @@ function App() {
   const [user, setUser] = useState<User>();
   const myClassName = isLoggedIn ? "a" : "b";
 
-  return <Counter />;
+  // return <Counter />;
+
+  return <ToolkitCounter count={1} />;
 
   return (
     <Modal title="Login Modal">
