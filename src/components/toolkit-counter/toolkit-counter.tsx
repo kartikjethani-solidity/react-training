@@ -1,16 +1,24 @@
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import { increment, decrement } from "../../toolkit-store/slices/counter-slice";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-import { RootState } from "../../toolkit-store";
+import { AppDispatch, RootState } from "../../toolkit-store";
+import { fetchUserByIdThunk } from "../../toolkit-store/thunks/fetch-user-thunk/fetch-user.thunk";
 
 type Props = {
   count: number;
 };
 
 export const ToolkitCounter: FC<Props> = () => {
-  const count = useSelector((state: RootState) => state.counter.count);
   const dispatch = useDispatch();
+  const useAppDispatch = () => useDispatch<AppDispatch>();
+  const appDispatch = useAppDispatch();
+
+  useEffect(() => {
+    appDispatch(fetchUserByIdThunk(2));
+  }, []);
+
+  const count = useSelector((state: RootState) => state.counter.count);
 
   return (
     <div>
