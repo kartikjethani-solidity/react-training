@@ -5,6 +5,8 @@ import { useState } from "react";
 // import { User } from "./types/user.type";
 // import { Counter } from "./components/counter-toolkit";
 // import Counter from "./components/counter";
+// import Counter from "./components/counter";
+import { ToolkitCounter } from "./components/toolkit-counter";
 
 function App() {
   // const [isLoggedIn, setLoggedIn] = useState<boolean>(false);
@@ -49,6 +51,9 @@ function App() {
   // const myClassName = isLoggedIn ? "a" : "b";
 
   // return <Counter />;
+  // return <Counter />;
+
+  return <ToolkitCounter count={1} />;
 
   return <LoginForm />;
 

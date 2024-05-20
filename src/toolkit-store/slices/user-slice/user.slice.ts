@@ -1,14 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchUserByIdThunk } from "../../../components/tookit-store/thunks/fetch-user-thunk/fetch-user.thunk";
 import { User } from "../../../types/user";
+import { fetchUserByIdThunk } from "../../thunks/fetch-user-thunk";
 
-interface UsersState {
+interface UserState {
   user: User | null;
 }
 
 const initialState = {
   user: null,
-} satisfies UsersState as UsersState;
+} satisfies UserState as UserState;
 
 // Then, handle actions in your reducers:
 export const usersSlice = createSlice({
@@ -18,11 +18,12 @@ export const usersSlice = createSlice({
   extraReducers: (builder) => {
     // Add reducers for additional action types here, and handle loading state as needed
     builder.addCase(fetchUserByIdThunk.fulfilled, (state, action) => {
-      // Add user to the state array
       state.user = action.payload;
+    });
+    builder.addCase(fetchUserByIdThunk.rejected, (state) => {
+      state.user = null;
     });
   },
 });
 
-// Later, dispatch the thunk as needed in the app
 export default usersSlice.reducer;
