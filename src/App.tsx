@@ -1,52 +1,61 @@
-import { useEffect, useState } from "react";
 import "./App.css";
-import { Profile } from "./components/profile";
-import { User } from "./types/user";
-import { H1 } from "./components/h1";
-import { UserListing } from "./components/user-listing";
-import { Modal } from "./components/modal";
 import { LoginForm } from "./components/login-form";
+import { useState } from "react";
+// import { UserDetails } from "./components/user-listing/user-details/user-details";
+// import { User } from "./types/user.type";
+// import { Counter } from "./components/counter-toolkit";
+// import Counter from "./components/counter";
+// import Counter from "./components/counter";
+import { ToolkitCounter } from "./components/toolkit-counter";
 
 function App() {
-  const signIn = () => {
-    // api call to sign the user in which returns true or false
-    const user = {
-      isLoggedIn: true,
-      name: "Kartik",
-      id: 1,
-      email: "kj@gmail.com",
-    };
+  // const [isLoggedIn, setLoggedIn] = useState<boolean>(false);
+  // const [user, setUser] = useState<User>();
 
-    // useReducer
+  // const users = [
+  //   { isLoggedIn: true, name: "Kartik", id: 1, email: "kj@gmail.com" },
+  //   {
+  //     isLoggedIn: false,
+  //     name: "Shivansh",
+  //     id: 1,
+  //     email: "shivansh@gmail.com",
+  //   },
+  //   { isLoggedIn: true, name: "Kamya", id: 1, email: "kamya@gmail.com" },
+  // ];
 
-    setLoggedIn(user.isLoggedIn);
-    setUser(user);
-  };
+  // const signIn = () => {
+  //   const user = {
+  //     isLoggedin: true,
+  //     name: "Dhruv",
+  //     id: 1,
+  //     email: "dhruv@worksimpli",
+  //   };
 
-  const users = [
-    { isLoggedIn: true, name: "Kartik", id: 1, email: "kj@gmail.com" },
-    {
-      isLoggedIn: false,
-      name: "Shivansh",
-      id: 1,
-      email: "shivansh@gmail.com",
-    },
-    { isLoggedIn: true, name: "Kamya", id: 1, email: "kamya@gmail.com" },
-  ];
+  //   setLoggedIn(user.isLoggedin);
+  //   setUser(user);
+  // };
+
+  // const users = [
+  //   { isLoggedIn: true, name: "Kartik", id: 1, email: "kj@gmail.com" },
+  //   {
+  //     isLoggedIn: false,
+  //     name: "Shivansh",
+  //     id: 1,
+  //     email: "shivansh@gmail.com",
+  //   },
+  //   { isLoggedIn: true, name: "Kamya", id: 1, email: "kamya@gmail.com" },
+  // ];
   // STATE
-  const [isLoggedIn, setLoggedIn] = useState<boolean>(false);
-  const [user, setUser] = useState<User>();
-  const myClassName = isLoggedIn ? "a" : "b";
+  // const [isLoggedIn, setLoggedIn] = useState<boolean>(false);
+  // const [user, setUser] = useState<User>();
+  // const myClassName = isLoggedIn ? "a" : "b";
 
-  return (
-    <Modal title="Login Modal">
-      <LoginForm>
-        <Modal title="Edit Profile Pic">
-          <h1></h1>
-        </Modal>
-      </LoginForm>
-    </Modal>
-  );
+  // return <Counter />;
+  // return <Counter />;
+
+  return <ToolkitCounter count={1} />;
+
+  return <LoginForm />;
 
   // return (
   //   <div className="App">
@@ -54,11 +63,11 @@ function App() {
   //       <Profile
   //         user={user}
   //         clickHandler={() => {}}
-  //         // address={{
-  //         //   firstLine: "Corenthum",
-  //         //   city: "Noida",
-  //         //   state: "UP",
-  //         // }}
+  //         address={{
+  //           firstLine: "Corenthum",
+  //           city: "Noida",
+  //           state: "UP",
+  //         }}
   //       />
   //     ) : (
   //       <button onClick={signIn}>Sign In</button>
@@ -66,7 +75,7 @@ function App() {
 
   //     <div className={myClassName}>Hello</div>
 
-  //     {/* <Profile
+  //     <Profile
   //       email="shivansh@abc.com"
   //       id={2}
   //       name="Shivansh"
@@ -75,7 +84,7 @@ function App() {
   //         city: "Noida",
   //         state: "UP",
   //       }}
-  //     /> */}
+  //     />
 
   //     <div style={{ marginTop: "100px" }}>
   //       <H1 heading="List of all users" />
@@ -84,7 +93,32 @@ function App() {
   //       </div>
   //     </div>
   //   </div>
+
+  //--------------TAILWIND CARDS-------------------------
+  // return (
+  //   <div className="App">
+  //     {user ? (
+  //       <div className="grid grid-cols-3 place-items-center">
+  //         <Profile user={user} clickHandler={() => {}} />
+  //       </div>
+  //     ) : (
+  //       <button
+  //         type="button"
+  //         className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+  //         onClick={signIn}
+  //       >
+  //         Signin
+  //       </button>
+  //     )}
+  //     <div style={{ marginTop: "100px" }}>
+  //       <H1 heading="List of all users" />
+  //       <div style={{ marginTop: "20px" }}>
+  //         <UserListing />
+  //       </div>
+  //     </div>
+  //   </div>
   // );
+  // import Counter from "./components/counter";
 }
 
 export default App;
