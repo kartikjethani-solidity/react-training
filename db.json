@@ -19,18 +19,8 @@
       "email": "kamya@gmail.com"
     },
     {
-      "id": "58fa",
-      "name": "Shivanshfds",
-      "password": 123
-    },
-    {
-      "id": "4d2a",
-      "name": "Shivanshfds",
-      "password": 123
-    },
-    {
       "id": "0cdd",
-      "name": "Shivanshfd",
+      "name": "kamya",
       "password": 123
     },
     {
@@ -46,6 +36,11 @@
     {
       "id": "110e",
       "name": "ddsddsaddsddsafddsddsaddsddsafs",
+      "password": 123
+    },
+    {
+      "id": "afe3",
+      "name": "hi im kamya",
       "password": 123
     }
   ]

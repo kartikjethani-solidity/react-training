@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import type { RootState } from "../../redux-toolkit-store";
 import { modifyUserName } from "../../redux-toolkit-store/slices/counter/username.slice";
 import { modifyUserPassword } from "../../redux-toolkit-store/slices/counter/userpassword.slice";
-
+import { useState } from "react";
 export const LoginForm = () => {
   const username = useSelector((state: RootState) => state.username.value);
   const password = useSelector((state: RootState) => state.userPassword.value);
@@ -17,8 +17,18 @@ export const LoginForm = () => {
     dispatch(modifyUserPassword(e.target.value));
   };
 
+  type FormErrors = {
+    username: "";
+    password: "";
+  };
+
+  const [formInput, setFormInput] = useState({
+    username: "",
+    password: "",
+  });
   const validateUsername = (): boolean => {
     if (!username || /\d/.test(username)) {
+      setFormError({ ...FormErrors, username: "Enter valid username address" });
       console.log("Username must not be empty and should contain only alphabets.");
       return false;
     }
