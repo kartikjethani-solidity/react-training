@@ -1,82 +1,77 @@
-import { url } from "inspector";
-import { ChangeEventHandler, FC, PropsWithChildren, useState } from "react";
+import React, { ChangeEventHandler } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import type { RootState } from "../../redux-toolkit-store";
+import { modifyUserName } from "../../redux-toolkit-store/slices/counter/username.slice";
+import { modifyUserPassword } from "../../redux-toolkit-store/slices/counter/userpassword.slice";
 
-export const LoginForm: FC<PropsWithChildren> = ({ children }) => {
-  //   const [username, setUsername] = useState<string>("kartik@gmail.com");
-  //   const [password, setPassword] = useState<string>("");
+export const LoginForm = () => {
+  const username = useSelector((state: RootState) => state.username.value);
+  const password = useSelector((state: RootState) => state.userPassword.value);
 
-  type User = {
-    username: string;
-    password: string;
+  const dispatch = useDispatch();
+
+  const handleUserNameChange: ChangeEventHandler<HTMLInputElement> = (e) => {
+    dispatch(modifyUserName(e.target.value));
+  };
+  const handlePasswordChange: ChangeEventHandler<HTMLInputElement> = (e) => {
+    dispatch(modifyUserPassword(e.target.value));
   };
 
-  const [isDisclaimerAgreed, setDisclaimerAgreed] = useState(false);
-
-  const [user, setUser] = useState<User>({ username: "", password: "" });
-
-  //   const handleUsernameChange: React.ChangeEventHandler<HTMLInputElement> = (
-  //     e
-  //   ) => {
-  //     setUsername(e.target.value);
-  //   };
-
-  //   const handlePasswordChange: React.ChangeEventHandler<HTMLInputElement> = (
-  //     e
-  //   ) => {
-  //     setPassword(e.target.value);
-  //   };
-
-  //   const handleChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
-  //     const { name, value } = e.target;
-  //     if (name === "username") {
-  //       setUsername(value);
-  //     } else if (name === "password") {
-  //       setPassword(value);
-  //     }
-  //   };
-
-  const handleChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
-    const { name, value } = e.target;
-    console.log(user, { name, value });
-    setUser({ ...user, [name]: value });
+  const validateUsername = (): boolean => {
+    if (!username || /\d/.test(username)) {
+      console.log("Username must not be empty and should contain only alphabets.");
+      return false;
+    }
+    return true;
   };
 
-  const handleSubmit = async () => {
-    await fetch("/api/login", { method: "POST", body: JSON.stringify(user) });
+  const postFormData = async () => {
+    try {
+      const response = await fetch("http://localhost:3000/users", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ name: username, password: 123 }),
+      });
+
+      if (!response.ok) {
+        throw new Error(`Error: ${response.statusText}`);
+      }
+
+      const data = await response.json();
+      console.log("Submission successful", data);
+    } catch (error) {
+      console.error("Error submitting form", error);
+    }
   };
 
-  const handleCheckboxChange: ChangeEventHandler<HTMLInputElement> = (e) => {
-    console.log(e.target.checked);
-    setDisclaimerAgreed(e.target.checked);
+  const handleSubmit = () => {
+    if (validateUsername()) {
+      postFormData();
+    }
   };
 
   return (
-    <div className="mx-auto h-52 bg-orange-500">
+    <>
       <input
-        type="checkbox"
-        checked={isDisclaimerAgreed}
-        onChange={handleCheckboxChange}
-      />
-
-      <input
-        value={user?.username}
-        onChange={handleChange}
-        className="border border-red-300"
+        value={username}
+        onChange={handleUserNameChange}
+        className="border"
         name="username"
-        placeholder="enter username"
+        placeholder="Enter username"
       />
+
       <input
-        value={user?.password}
-        onChange={handleChange}
-        placeholder="Enter Password"
-        className="border border-red-300"
+        value={password}
         type="password"
+        onChange={handlePasswordChange}
+        className="border"
         name="password"
+        placeholder="Enter password"
       />
 
-      <button onClick={handleSubmit}>Login</button>
-
-      {children}
-    </div>
+      <button onClick={handleSubmit}>Submit</button>
+    </>
   );
 };
