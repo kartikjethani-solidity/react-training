@@ -1,10 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
 import usernameReducer from "./slices/counter/username.slice";
-
+import passwordReducer from "./slices/counter/password.slice";
+import authReducer from "./slices/counter/auth.slice";
 export const store = configureStore({
   reducer: {
     // counter: counterReducer,
     username: usernameReducer,
+    password: passwordReducer,
+    auth: authReducer,
   },
 });
 

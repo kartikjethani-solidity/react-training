@@ -1,9 +1,17 @@
 import "./App.css";
-import { LoginForm } from "./components/login-form";
+import { BaseRoom } from "./RTKnewImplementation/components/baseRoom";
+import { WrapperDiv } from "./RTKnewImplementation/components/WrapperDiv";
 // import Counter from "./components/counter";
 
-function App() {
-  return <LoginForm />;
-}
+export const App: React.FC = () => {
+  return (
+    <WrapperDiv>
+      <BaseRoom></BaseRoom>
+      <BaseRoom></BaseRoom>
+      <BaseRoom></BaseRoom>
+      <BaseRoom></BaseRoom>
+    </WrapperDiv>
+  );
+};
 
 export default App;
