@@ -1,11 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
 import counterSlice from "./slices/counter-slice";
-import usersSlice from "./slices/user-slice";
+import productSlice from "./slices/product-slice/product.slice";
+// import usersSlice from "./slices/user-slice";
 
 export const store = configureStore({
   reducer: {
     counter: counterSlice,
-    user: usersSlice,
+    // user: usersSlice,
+    products: productSlice,
   },
 });
 
