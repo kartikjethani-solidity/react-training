@@ -18,5 +18,55 @@
       "name": "Kamya",
       "email": "kamya@gmail.com"
     }
+  ],
+  "products": [
+    {
+      "id": "11",
+      "cat": "shoes",
+      "price": 233,
+      "name": "red",
+      "img": "https://unsplash.com/photos/unpaired-red-nike-sneaker-164_6wVEHfI?utm_content=creditShareLink&utm_medium=referral&utm_source=unsplash",
+      "details": "dfrrddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddvxccv"
+    },
+    {
+      "id": "14",
+      "cat": "shoes",
+      "price": 233,
+      "name": "red",
+      "img": "https://unsplash.com/photos/unpaired-red-nike-sneaker-164_6wVEHfI?utm_content=creditShareLink&utm_medium=referral&utm_source=unsplash",
+      "details": "dfrrddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddvxccv"
+    },
+    {
+      "id": "12",
+      "cat": "shoes",
+      "price": 233,
+      "name": "red",
+      "img": "https://unsplash.com/photos/unpaired-red-nike-sneaker-164_6wVEHfI?utm_content=creditShareLink&utm_medium=referral&utm_source=unsplash",
+      "details": "dfrrddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddvxccv"
+    },
+    {
+      "id": "13",
+      "cat": "shoes",
+      "price": 233,
+      "name": "red",
+      "img": "https://unsplash.com/photos/unpaired-red-nike-sneaker-164_6wVEHfI?utm_content=creditShareLink&utm_medium=referral&utm_source=unsplash",
+      "details": "dfrrddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddvxccv"
+    },
+    {
+      "id": "15",
+      "cat": "shoes",
+      "price": 233,
+      "name": "red",
+      "img": "https://unsplash.com/photos/unpaired-red-nike-sneaker-164_6wVEHfI?utm_content=creditShareLink&utm_medium=referral&utm_source=unsplash",
+      "details": "dfrrddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddvxccv"
+    },
+    {
+      "id": "16",
+      "cat": "shoes",
+      "price": 233,
+      "name": "red",
+      "img": "https://unsplash.com/photos/unpaired-red-nike-sneaker-164_6wVEHfI?utm_content=creditShareLink&utm_medium=referral&utm_source=unsplash",
+      "details": "dfrrddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddvxccv"
+    }
   ]
 }
