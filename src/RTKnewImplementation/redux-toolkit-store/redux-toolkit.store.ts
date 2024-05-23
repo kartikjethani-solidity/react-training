@@ -1,15 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
 
-import forcedToWorkReducer from "./slices/forcedToWork.slice";
-import forcedToDisplayReducer from "./slices/forcedToDisplay.slice";
-import forcedToWipeReducer from "./slices/forcedToWipe.slice";
-import forcedToFetchReducer from "./slices/forcedToFetch.slice";
+import characterReducer from "./slices/character.slice";
+import platformReducer from "./slices/platform.slice";
+import fetchStatusReducer from "./slices/fetchStatus.slice";
 export const store = configureStore({
   reducer: {
-    forcedToWork: forcedToWorkReducer,
-    forcedToFetch: forcedToFetchReducer,
-    forcedToWipe: forcedToWipeReducer,
-    forcedToDisplay: forcedToDisplayReducer,
+    platform: platformReducer,
+    character: characterReducer,
+    fetchStatus: fetchStatusReducer,
   },
 });
 
