@@ -17,7 +17,7 @@ const MovingObject: React.FC<{ distance: number }> = ({ distance }) => {
   return (
     <group ref={ref} dispose={null}>
       <mesh
-        geometry={nodes.YourMeshName.geometry}
+        // geometry={nodes.Mesh_cuttingBoardRound.geometry}
         material={materials.YourMaterialName}
       />
     </group>

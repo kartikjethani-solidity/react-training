@@ -1,6 +1,5 @@
-import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
-
-interface platformState {
+import { createSlice } from "@reduxjs/toolkit";
+export interface platformState {
   //  css of bg based would depend upon how these values change
   // states might be janky  but this is a prototype
   isPresent: boolean;
@@ -15,7 +14,7 @@ const initialState: platformState = {
   isMovingTowardsCharacter: false,
   isMovingAwayFromCharacter: false,
   isHoveringBelowTheCharacter: false,
-  status: "call platform",
+  status: "call the platform",
 };
 
 const platformSlice = createSlice({
@@ -23,21 +22,26 @@ const platformSlice = createSlice({
   initialState,
   reducers: {
     isMovingTowardsCharacter: (state) => {
+      state.isPresent = true;
       state.isMovingTowardsCharacter = true;
       state.isMovingAwayFromCharacter = false;
+      state.isHoveringBelowTheCharacter = false;
       state.status = "isMovingTowardsCharacter";
-      state.isPresent = true;
     },
     isMovingAwayFromCharacter: (state) => {
-      state.isMovingAwayFromCharacter = true;
-      state.isMovingTowardsCharacter = false;
-      state.status = "isMovingAwayFromCharacter";
       state.isPresent = false;
+      state.isMovingTowardsCharacter = false;
+      state.isMovingAwayFromCharacter = false;
+      state.isHoveringBelowTheCharacter = false;
+      state.status = "call the platform";
     },
     isHoveringBelowTheCharacter: (state) => {
-      state.isHoveringBelowTheCharacter = !state.isHoveringBelowTheCharacter;
-      state.status = "isHoveringBelowTheCharacter";
       state.isPresent = true;
+      state.isMovingTowardsCharacter = false;
+      state.isMovingAwayFromCharacter = false;
+      state.isHoveringBelowTheCharacter = true;
+      state.status = "Hovering below the Character";
+      console.log(state.status);
     },
   },
 });

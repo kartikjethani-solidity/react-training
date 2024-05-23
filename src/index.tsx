@@ -4,7 +4,7 @@ import "./output.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { Provider } from "react-redux";
-import { store } from "./redux-toolkit-store";
+import { store } from "./RTKnewImplementation/redux-toolkit-store/redux-toolkit.store";
 // import store from "./store";
 
 const root = ReactDOM.createRoot(
