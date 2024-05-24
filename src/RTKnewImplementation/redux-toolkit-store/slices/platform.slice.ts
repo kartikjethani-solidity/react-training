@@ -14,7 +14,7 @@ const initialState: platformState = {
   isMovingTowardsCharacter: false,
   isMovingAwayFromCharacter: false,
   isHoveringBelowTheCharacter: false,
-  status: "call the platform",
+  status: ": (",
 };
 
 const platformSlice = createSlice({
@@ -26,21 +26,21 @@ const platformSlice = createSlice({
       state.isMovingTowardsCharacter = true;
       state.isMovingAwayFromCharacter = false;
       state.isHoveringBelowTheCharacter = false;
-      state.status = "isMovingTowardsCharacter";
+      state.status = "-->";
     },
     isMovingAwayFromCharacter: (state) => {
       state.isPresent = false;
       state.isMovingTowardsCharacter = false;
       state.isMovingAwayFromCharacter = false;
       state.isHoveringBelowTheCharacter = false;
-      state.status = "call the platform";
+      state.status = "<--";
     },
     isHoveringBelowTheCharacter: (state) => {
       state.isPresent = true;
       state.isMovingTowardsCharacter = false;
       state.isMovingAwayFromCharacter = false;
       state.isHoveringBelowTheCharacter = true;
-      state.status = "Hovering below the Character";
+      state.status = "'---'";
       console.log(state.status);
     },
   },

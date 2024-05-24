@@ -1,59 +1,47 @@
+// src/HorizontalMovingDiv.tsx
+
 import React, { useRef, useState } from "react";
-import { Canvas, useFrame } from "@react-three/fiber";
-import { useGLTF, OrbitControls, Stars } from "@react-three/drei";
-import { Physics } from "@react-three/cannon";
-import "tailwindcss/tailwind.css";
 
-const MovingObject: React.FC<{ distance: number }> = ({ distance }) => {
-  const ref = useRef<any>();
-  const { nodes, materials } = useGLTF("/platform.gltf");
-
-  useFrame(() => {
-    if (ref.current) {
-      ref.current.position.x = distance;
-    }
-  });
-
-  return (
-    <group ref={ref} dispose={null}>
-      <mesh
-        // geometry={nodes.Mesh_cuttingBoardRound.geometry}
-        material={materials.YourMaterialName}
-      />
-    </group>
-  );
-};
-
-const HorizontalMovingGltf: React.FC = () => {
-  const [distance, setDistance] = useState(0);
+import { PropsWithChildren } from "react";
+const HorizontalMovingDiv: React.FC<{ left: number; top: number }> = ({
+  left,
+  top,
+}) => {
+  const divRef = useRef<HTMLDivElement>(null);
+  const [distance, setDistance] = useState<number | null>(null);
 
   const handleMoveClick = () => {
-    const inputDistance = parseInt(
-      prompt("Enter horizontal distance in pixels:") || "0",
-      10
-    );
-    setDistance(inputDistance);
+    setDistance(left + 96);
+    animateDivTo(left + 96);
+  };
+
+  const animateDivTo = (distance: number) => {
+    if (!divRef.current) return;
+    divRef.current.style.transform = `translateX(${distance}px)`;
   };
 
   return (
-    <div className="relative w-screen h-screen bg-gray-100">
-      <Canvas className="absolute w-full h-full">
-        <OrbitControls />
-        <Stars />
-        <ambientLight intensity={0.5} />
-        <spotLight position={[10, 15, 10]} angle={0.3} />
-        <Physics>
-          <MovingObject distance={distance} />
-        </Physics>
-      </Canvas>
+    <>
+      <div
+        ref={divRef}
+        className={` w-24  bg-lightblue-500  transform flex justify-center align-items`}
+        style={{
+          transition: "transform 1s ease-in-out",
+          position: "absolute",
+          left: `-96px`,
+          top: `${top}px`,
+        }}
+      >
+        Moving platform
+      </div>
       <button
         onClick={handleMoveClick}
         className="absolute bottom-10 bg-blue-500 text-white py-2 px-4 rounded"
       >
-        Click here
+        click here
       </button>
-    </div>
+    </>
   );
 };
 
-export default HorizontalMovingGltf;
+export default HorizontalMovingDiv;
