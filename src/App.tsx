@@ -6,6 +6,7 @@ import { Modal } from "./components/modal";
 import ProductDetails from "./components/product-details/product-details";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import ProductListing from "./components/product-listing/product-listing";
+import "../src/css/app.css";
 
 function App() {
   // const signIn = () => {

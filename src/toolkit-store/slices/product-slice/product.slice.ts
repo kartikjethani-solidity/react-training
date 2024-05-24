@@ -24,7 +24,6 @@ const initialState: ProductsState = {
   error: null,
 };
 
-// Async thunk for fetching all products
 export const fetchProducts = createAsyncThunk<Product[]>("products/fetchProducts", async () => {
   const response = await fetch("https://fakestoreapi.com/products");
   if (!response.ok) {

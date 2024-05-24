@@ -28,7 +28,7 @@ const ProductListing: React.FC = () => {
   }
 
   return (
-    <div className="ui grid container">
+    <div className="product list grid">
       <ProductComponent />
     </div>
   );
