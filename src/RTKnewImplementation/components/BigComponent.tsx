@@ -4,7 +4,10 @@ import { useState, useEffect } from "react";
 import HorizontalMovingDiv from "./platform";
 import ButtonsTocall from "./buttons";
 import { useRef } from "react";
-import { RootState } from "../redux-toolkit-store/redux-toolkit.store";
+import {
+  RootState,
+  AppDispatch,
+} from "../redux-toolkit-store/redux-toolkit.store";
 import {
   isHoveringBelowTheCharacter,
   isMovingAwayFromCharacter,
@@ -18,11 +21,13 @@ import {
   isFetched,
   isFetching,
   fetchUnload,
+  fetchUsers,
 } from "../redux-toolkit-store/slices/fetchStatus.slice";
 const BigComponent: React.FC<PropsWithChildren<{}>> = ({ children }) => {
   const platformStatus = useSelector((state: RootState) => state.platform);
   const fetchStatus = useSelector((state: RootState) => state.fetchStatus);
   const dispatch = useDispatch();
+  const dispatch2 = useDispatch<AppDispatch>();
 
   const [platformTop, setPlatformTop] = useState<number>(0);
   const [platformLeft, setPlatformLeft] = useState<number>(0);
@@ -111,11 +116,12 @@ const BigComponent: React.FC<PropsWithChildren<{}>> = ({ children }) => {
     return function () {
       dispatch(isFetching());
 
-      setTimeout(() => {
-        dispatch(isFetched());
-      }, 3000);
+      dispatch2(fetchUsers());
     };
   }
+
+  //----
+
   return (
     <>
       {
@@ -169,11 +175,33 @@ const BigComponent: React.FC<PropsWithChildren<{}>> = ({ children }) => {
         {/* Right Side */}
         <div className="w-1/3 h-screen p-4">
           {/* Fourth Card */}
-          <div className="w-full h-full bg-gray-300 shadow-lg rounded-lg overflow-hidden flex items-center justify-center">
-            {/* Content for Fourth Card */}
-            {!fetchStatus.fetchBtnClicked
-              ? platformStatus.status
-              : fetchStatus.fetchMsg}
+          <div className="w-full h-full bg-gray-300 shadow-lg rounded-lg overflow-hidden flex flex-col items-center justify-start p-6">
+            {/* Message */}
+            <p className="text-gray-800 text-xl font-semibold mb-4">
+              {!fetchStatus.isFetched
+                ? !fetchStatus.fetchBtnClicked
+                  ? platformStatus.status
+                  : fetchStatus.fetchMsg
+                : fetchStatus.fetchMsg}
+            </p>
+
+            {/* User List */}
+            {fetchStatus.isFetched && (
+              <ul className="w-full space-y-4 mt-4">
+                {fetchStatus.fetchData.map((user) => (
+                  <li
+                    key={user.id}
+                    className="bg-white p-4 rounded-lg shadow-sm flex flex-col items-center"
+                  >
+                    <p className="text-lg font-medium text-gray-900">
+                      {user.username}
+                    </p>
+                    <p className="text-gray-700">{user.email}</p>
+                    <p className="text-gray-500 text-sm">Age: {user.age}</p>
+                  </li>
+                ))}
+              </ul>
+            )}
           </div>
         </div>
       </div>
