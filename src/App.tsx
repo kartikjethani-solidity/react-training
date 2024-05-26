@@ -36,10 +36,37 @@ import { useSelector, useDispatch } from "react-redux";
 import BigComponent from "./RTKnewImplementation/components/BigComponent";
 import ButtonsTocall from "./RTKnewImplementation/components/buttons";
 import HorizontalMovingDiv from "./RTKnewImplementation/components/platform";
+//--------------
+import { Suspense } from "react";
+import { Canvas } from "@react-three/fiber";
+import { Environment } from "@react-three/drei";
+
+//--------------
+import { OrbitControls, Loader } from "@react-three/drei";
+import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
+import { useLoader } from "@react-three/fiber";
+import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader";
+
+const Model: React.FC = () => {
+  const gltfLoader = new GLTFLoader();
+  const dracoLoader = new DRACOLoader(); // Create a DRACOLoader instance
+
+  gltfLoader.setDRACOLoader(dracoLoader); // Pass DRACOLoader instance to GLTFLoader
+
+  const gltf = useLoader(GLTFLoader, "./platform.gltf");
+  return <primitive object={gltf.scene} />;
+};
+
 const App: React.FC = () => {
   return (
     <>
       <BigComponent />
+      {/* <Canvas>
+        <OrbitControls />
+        <Suspense fallback={null}>
+          <Model />
+        </Suspense>
+      </Canvas> */}
     </>
   );
 };

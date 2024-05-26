@@ -10,15 +10,15 @@ const HorizontalMovingDiv: React.FC<{ left: number; top: number }> = ({
   const divRef = useRef<HTMLDivElement>(null);
   const [distance, setDistance] = useState<number | null>(null);
 
-  const handleMoveClick = () => {
-    setDistance(left + 96);
-    animateDivTo(left + 96);
-  };
+  // const handleMoveClick = () => {
+  //   setDistance(left + 96);
+  //   animateDivTo(left + 96);
+  // };
 
-  const animateDivTo = (distance: number) => {
-    if (!divRef.current) return;
-    divRef.current.style.transform = `translateX(${distance}px)`;
-  };
+  // const animateDivTo = (distance: number) => {
+  //   if (!divRef.current) return;
+  //   divRef.current.style.transform = `translateX(${distance}px)`;
+  // };
 
   return (
     <>
@@ -34,12 +34,12 @@ const HorizontalMovingDiv: React.FC<{ left: number; top: number }> = ({
       >
         Moving platform
       </div>
-      <button
+      {/* <button
         onClick={handleMoveClick}
         className="absolute bottom-10 bg-blue-500 text-white py-2 px-4 rounded"
       >
         click here
-      </button>
+      </button> */}
     </>
   );
 };

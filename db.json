@@ -1,8 +1,30 @@
 {
   "users": [
     {
-      "name": "lol",
-      "password": 1231
+      "id": 1,
+      "username": "john_doe",
+      "email": "john@example.com",
+      "age": 28
+    },
+    {
+      "id": 2,
+      "username": "jane_smith",
+      "email": "jane@example.com",
+      "age": 35
+    }
+  ],
+  "posts": [
+    {
+      "id": 1,
+      "title": "Hello, World!",
+      "content": "This is my first post.",
+      "author_id": 1
+    },
+    {
+      "id": 2,
+      "title": "An Exciting Adventure",
+      "content": "Today I went on a hike.",
+      "author_id": 2
     }
   ]
 }

@@ -14,7 +14,7 @@ const initialState: platformState = {
   isMovingTowardsCharacter: false,
   isMovingAwayFromCharacter: false,
   isHoveringBelowTheCharacter: false,
-  status: ": (",
+  status: "Call the platform",
 };
 
 const platformSlice = createSlice({
@@ -26,22 +26,28 @@ const platformSlice = createSlice({
       state.isMovingTowardsCharacter = true;
       state.isMovingAwayFromCharacter = false;
       state.isHoveringBelowTheCharacter = false;
-      state.status = "-->";
+      state.status = "Platform in-route";
     },
     isMovingAwayFromCharacter: (state) => {
       state.isPresent = false;
       state.isMovingTowardsCharacter = false;
       state.isMovingAwayFromCharacter = false;
       state.isHoveringBelowTheCharacter = false;
-      state.status = "<--";
+      state.status = "Platform detached";
     },
     isHoveringBelowTheCharacter: (state) => {
       state.isPresent = true;
       state.isMovingTowardsCharacter = false;
       state.isMovingAwayFromCharacter = false;
       state.isHoveringBelowTheCharacter = true;
-      state.status = "'---'";
-      console.log(state.status);
+      state.status = "Platform arrived";
+    },
+    isOutofTheViewport: (state) => {
+      state.isPresent = false;
+      state.isMovingTowardsCharacter = false;
+      state.isMovingAwayFromCharacter = false;
+      state.isHoveringBelowTheCharacter = false;
+      state.status = "Call the platform";
     },
   },
 });
@@ -50,5 +56,6 @@ export const {
   isMovingAwayFromCharacter,
   isMovingTowardsCharacter,
   isHoveringBelowTheCharacter,
+  isOutofTheViewport,
 } = platformSlice.actions;
 export default platformSlice.reducer;

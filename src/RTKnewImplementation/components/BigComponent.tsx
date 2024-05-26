@@ -5,14 +5,28 @@ import HorizontalMovingDiv from "./platform";
 import ButtonsTocall from "./buttons";
 import { useRef } from "react";
 import { RootState } from "../redux-toolkit-store/redux-toolkit.store";
-import { isMovingTowardsCharacter } from "../redux-toolkit-store/slices/platform.slice";
-import { UseDispatch } from "react-redux";
+import {
+  isHoveringBelowTheCharacter,
+  isMovingAwayFromCharacter,
+  isMovingTowardsCharacter,
+  isOutofTheViewport,
+} from "../redux-toolkit-store/slices/platform.slice";
 import { useDispatch } from "react-redux";
+import { platform } from "os";
+import { useSelector } from "react-redux";
+import {
+  isFetched,
+  isFetching,
+  fetchUnload,
+} from "../redux-toolkit-store/slices/fetchStatus.slice";
 const BigComponent: React.FC<PropsWithChildren<{}>> = ({ children }) => {
+  const platformStatus = useSelector((state: RootState) => state.platform);
+  const fetchStatus = useSelector((state: RootState) => state.fetchStatus);
+  const dispatch = useDispatch();
+
   const [platformTop, setPlatformTop] = useState<number>(0);
   const [platformLeft, setPlatformLeft] = useState<number>(0);
   const [positionBoard, setPositionBoard] = useState<boolean>(false);
-  const dispatch = useDispatch();
   useEffect(() => {
     const platformElement = document.getElementById("platform");
     if (platformElement) {
@@ -32,21 +46,83 @@ const BigComponent: React.FC<PropsWithChildren<{}>> = ({ children }) => {
   const divRef = useRef<HTMLDivElement>(null);
   const [distance, setDistance] = useState<number | null>(null);
 
-  function animateDivToWithValues(distance: number) {
+  // function animateDivToWithValues(distance: number) {
+  //   return function () {
+  //     if (!divRef.current) return;
+  //     divRef.current.style.transform = `translateX(${distance}px)`;
+  //     dispatch(isMovingTowardsCharacter());
+  //     // const rect = divRef.current.getBoundingClientRect();
+  //     // rect.x += 1;
+  //   };
+  // }
+  ///---
+  const divRef2 = useRef<HTMLDivElement>(null);
+  useRef(null);
+  const [background, setBackground] = useState<string | null>(null);
+  // Default background
+
+  const changeBackground = () => {
+    setBackground("/giphy.gif"); // Path to the new GIF
+  };
+
+  function animateDivToWithValues(distance: number, duration: number) {
     return function () {
       if (!divRef.current) return;
-      divRef.current.style.transform = `translateX(${distance}px)`;
+
+      const div = divRef.current;
+
+      // Apply the transformation
+      div.style.transition = `transform ${duration * 1000}ms ease`;
+      div.style.transform = `translateX(${distance}px)`;
+
+      // Dispatch the action indicating movement has started
       dispatch(isMovingTowardsCharacter());
+
+      // Set up a timeout to detect when the transition ends
+      setTimeout(() => {
+        // You can dispatch another action or perform any other operation here
+        dispatch(isHoveringBelowTheCharacter());
+      }, duration * 1000);
     };
   }
 
+  function animateBackDivToWithValues(distance: number, duration: number) {
+    return function () {
+      if (!divRef.current) return;
+
+      const div = divRef.current;
+
+      // Apply the transformation
+      div.style.transition = `transform ${duration * 1000}ms ease`;
+      div.style.transform = `translateX(${distance}px)`;
+
+      // Dispatch the action indicating movement has started
+      dispatch(isMovingAwayFromCharacter());
+      dispatch(fetchUnload());
+      // Set up a timeout to detect when the transition ends
+      setTimeout(() => {
+        // You can dispatch another action or perform any other operation here
+        dispatch(isOutofTheViewport());
+      }, duration * 1000);
+    };
+  }
+
+  function fetchData() {
+    return function () {
+      dispatch(isFetching());
+
+      setTimeout(() => {
+        dispatch(isFetched());
+      }, 3000);
+    };
+  }
   return (
     <>
-      {positionBoard && (
+      {
         <>
           <div
             ref={divRef}
-            className={` w-24  bg-lightblue-500  transform flex justify-center align-items`}
+            className=" w-24  rounded-xl  transform flex justify-center align-items"
             style={{
               transition: "transform 1s ease-in-out",
               position: "absolute",
@@ -56,15 +132,8 @@ const BigComponent: React.FC<PropsWithChildren<{}>> = ({ children }) => {
           >
             Moving platform
           </div>
-          <button
-            onClick={animateDivToWithValues(platformLeft + 96)}
-            className="absolute bottom-10 bg-blue-500 text-white py-2 px-4 rounded"
-          >
-            click here
-          </button>
-          {/* <HorizontalMovingDiv left={platformLeft} top={platformTop} /> */}
         </>
-      )}
+      }
 
       <div className="flex ml-64 mr-28">
         {/* Left Side */}
@@ -86,7 +155,10 @@ const BigComponent: React.FC<PropsWithChildren<{}>> = ({ children }) => {
             {/* Content for Third Card */}
             <ButtonsTocall
               divRef={divRef}
-              animateDivTo={animateDivToWithValues(platformLeft + 96)}
+              animateDivTo={animateDivToWithValues(platformLeft + 96, 3)}
+              stopPosition={platformLeft}
+              animateDivBack={animateBackDivToWithValues(-96 - platformLeft, 3)}
+              fetchdata={fetchData()}
             />
           </div>
         </div>
@@ -99,7 +171,9 @@ const BigComponent: React.FC<PropsWithChildren<{}>> = ({ children }) => {
           {/* Fourth Card */}
           <div className="w-full h-full bg-gray-300 shadow-lg rounded-lg overflow-hidden flex items-center justify-center">
             {/* Content for Fourth Card */}
-            app status
+            {!fetchStatus.fetchBtnClicked
+              ? platformStatus.status
+              : fetchStatus.fetchMsg}
           </div>
         </div>
       </div>
