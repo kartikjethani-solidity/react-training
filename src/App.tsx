@@ -1,9 +1,14 @@
 import "./App.css";
-import { LoginForm } from "./components/login-form";
-// import Counter from "./components/counter";
+import RestaurantDetail from "./components/restaurent/RestaurantDetail";
+import RestaurantList from "./components/restaurent/RestrauntList";
 
 function App() {
-  return <LoginForm />;
+  return 
+ 
+  <div className="app container mx-auto p-4">
+    <RestaurantList />
+    <RestaurantDetail />
+  </div>
 }
 
 export default App;
