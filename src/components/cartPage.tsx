@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../app/store";
 import productData from "../productData";
 
-import { getCartTotal, removeItem, decreaseItemQuantity, increaseItemQuantity } from "../features/cartSlice";
+import { removeItem, decreaseItemQuantity, increaseItemQuantity, getCartTotal } from "../features/cartSlice";
 
 const CartPage = () => {
   const { cart, totalQuantity, totalPrice } = useSelector((state: RootState) => state.allCart);
@@ -29,7 +29,7 @@ const CartPage = () => {
                     <div className="row">
                       <div className="col-lg-3 col-md-12 mb-4 mb-lg-0">
                         <div className="bg-image hover-overlay hover-zoom ripple rounded" data-mdb-ripple-color="light">
-                          <img src={data.img} className="w-100" alt="Blue Jeans Jacket" />
+                          <img src={data.img} className="w-100" alt="SmartPhone" />
                         </div>
                       </div>
 
