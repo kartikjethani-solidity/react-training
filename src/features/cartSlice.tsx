@@ -13,7 +13,7 @@ export const cartSlice = createSlice({
   initialState,
   reducers: {
     addToCart: (state, action: PayloadAction) => {
-      state.cart.push(action.payload); //cart wale array mein item ki value push ho jaegi
+      state.cart.push(action.payload);
     },
   },
 });

@@ -10,13 +10,10 @@ export const store = configureStore({
 // rootState.ts
 
 import { combineReducers } from "redux";
-// import { cartReducer } from './reducers/cartReducer'; // Import your individual reducers
-// Import other reducers if you have them
 
 // Define RootState interface by combining all your individual state slices
 export interface RootState {
-  allCart: ReturnType<typeof cartSliceReducer>; // Adjust this according to your reducer structure
-  // Add other slices of state if you have them
+  allCart: ReturnType<typeof cartSliceReducer>;
 }
 
 // Combine individual reducers using combineReducers
