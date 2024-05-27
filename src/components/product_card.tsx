@@ -24,7 +24,7 @@ export default function ProductCard() {
     <div className="m-2">
       <MDBContainer>
         <MDBRow className="mb-3">
-          {items.map((item) => (
+          {items.map((item: any) => (
             <MDBCol key={item.id} size="md">
               <MDBCard>
                 <MDBCardImage src="item.img" position="top" alt="..." />
@@ -32,6 +32,9 @@ export default function ProductCard() {
                   <MDBCardTitle>{item.title}</MDBCardTitle>
                   <MDBCardText>{item.price}</MDBCardText>
                   <MDBBtn onClick={() => dispatch(addToCart(item))}>Add to cart</MDBBtn>
+
+                  {/* <!-- ---------1-----> yha se addToCart function mein item pass hoga aur cartSlice mein reducer bna hua hai
+                  us mein chala jaega as a state................................ --> */}
                 </MDBCardBody>
               </MDBCard>
             </MDBCol>
