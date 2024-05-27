@@ -5,7 +5,10 @@ type ModalProps = {
   title: string;
 };
 
-export const Modal: FC<PropsWithChildren<ModalProps>> = ({ title, children }) => {
+export const Modal: FC<PropsWithChildren<ModalProps>> = ({
+  title,
+  children,
+}) => {
   return (
     <>
       <div className="mx-auto w-96 bg-green-500 text-center h-96">
