@@ -7,7 +7,10 @@ import {
 } from "../redux-toolkit-store/slices/platform.slice";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { isFetched } from "../redux-toolkit-store/slices/fetchStatus.slice";
+import {
+  isFetched,
+  displayBtnClicked,
+} from "../redux-toolkit-store/slices/fetchStatus.slice";
 interface HorizontalMovingDivProps {
   divRef: React.RefObject<HTMLDivElement>;
   animateDivTo: () => void;
@@ -36,6 +39,11 @@ const ButtonsTocall: React.FC<HorizontalMovingDivProps> = ({
   const handleFetch = (e: any) => {
     fetchdata();
   };
+
+  const handleDisplay = (e: any) => {
+    dispatch(displayBtnClicked());
+  };
+
   const handleChange = (e: any) => {
     animateDivTo();
 
@@ -99,9 +107,7 @@ const ButtonsTocall: React.FC<HorizontalMovingDivProps> = ({
           <button
             className={`bg-yellow-300 w-5 h-5   hover:bg-yellow-200 duration-300 border-b-2 border-transparent hover:border-yellow-700 hover:shadow-lg px-4 py-2 rounded-lg `}
             onClick={handleBackChange}
-          >
-            &nbsp;
-          </button>
+          ></button>
         )}
 
         {platformStatus.isHoveringBelowTheCharacter &&
@@ -109,17 +115,14 @@ const ButtonsTocall: React.FC<HorizontalMovingDivProps> = ({
             <button
               className={`bg-blue-300 w-5 h-5   hover:bg-blue-200 duration-300 border-b-2 border-transparent hover:border-blue-700 hover:shadow-lg px-4 py-2 rounded-lg `}
               onClick={handleFetch}
-            >
-              &nbsp;
-            </button>
+            ></button>
           )}
         {platformStatus.isHoveringBelowTheCharacter &&
           fetchStatus.isFetched && (
             <button
               className={`bg-green-300 w-5 h-5  hover:bg-green-200 duration-300 border-b-2 border-transparent hover:border-green-600 hover:shadow-lg px-4 py-2 rounded-lg`}
-            >
-              &nbsp;
-            </button>
+              onClick={handleDisplay}
+            ></button>
           )}
       </div>
     </>

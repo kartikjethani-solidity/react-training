@@ -170,7 +170,30 @@ const BigComponent: React.FC<PropsWithChildren<{}>> = ({ children }) => {
         </div>
 
         {/* Space between Left and Right */}
-        <div className="w-1/3"></div>
+        <div className="w-1/3">
+          <div className="m-4  relative left-0 bottom-0 grid grid-cols-1gap-4  ">
+            <div
+              className={`bg-red-300 w-20  h-10 mt-4 hover:bg-pink-200 duration-300 border-b-2 border-transparent  `}
+            >
+              call
+            </div>
+            <div
+              className={`bg-yellow-300 w-20 h-10 mt-2 hover:bg-yellow-200 duration-300 border-b-2 border-transparent hover:border-yellow-700 hover:shadow-lg px-4 py-2 rounded-lg `}
+            >
+              send
+            </div>
+            <div
+              className={`bg-blue-300 w-20 h-10 mt-2  hover:bg-blue-200 duration-300 border-b-2 border-transparent hover:border-blue-700 hover:shadow-lg px-4 py-2 rounded-lg `}
+            >
+              Fetch
+            </div>
+            <div
+              className={`bg-green-300 w-20 h-10 mt-2  hover:bg-green-200 duration-300 border-b-2 border-transparent hover:border-green-600 hover:shadow-lg px-4 py-2 rounded-lg`}
+            >
+              Display
+            </div>
+          </div>
+        </div>
 
         {/* Right Side */}
         <div className="w-1/3 h-screen p-4">
@@ -186,7 +209,7 @@ const BigComponent: React.FC<PropsWithChildren<{}>> = ({ children }) => {
             </p>
 
             {/* User List */}
-            {fetchStatus.isFetched && (
+            {fetchStatus.displayBtnClicked && fetchStatus.isFetched && (
               <ul className="w-full space-y-4 mt-4">
                 {fetchStatus.fetchData.map((user) => (
                   <li

@@ -12,6 +12,8 @@ interface FetchStatusState {
   fetchBtnClicked: boolean;
   fetchMsg: string;
   fetchData: Users[];
+  fetchDisplay: boolean;
+  displayBtnClicked: boolean;
 }
 
 const initialState: FetchStatusState = {
@@ -19,6 +21,8 @@ const initialState: FetchStatusState = {
   fetchBtnClicked: false,
   fetchMsg: "fetch to display",
   fetchData: [],
+  fetchDisplay: false,
+  displayBtnClicked: false,
 };
 
 // Define the async thunk
@@ -45,16 +49,30 @@ const fetchStateSlice = createSlice({
       state.isFetched = true;
       state.fetchBtnClicked = true;
       state.fetchMsg = "Msg fetched! Here is your content";
+      state.fetchDisplay = false;
     },
     isFetching: (state) => {
       state.isFetched = false;
       state.fetchBtnClicked = true;
       state.fetchMsg = "fetch in progress ....";
+      state.fetchDisplay = false;
     },
     fetchUnload: (state) => {
       state.isFetched = false;
       state.fetchBtnClicked = false;
       state.fetchMsg = "fetch Data to display";
+      state.fetchDisplay = false;
+      state.displayBtnClicked = false;
+    },
+
+    fetchDisplay: (state) => {
+      state.isFetched = false;
+      state.fetchBtnClicked = false;
+      state.fetchMsg = "Data ";
+      state.fetchDisplay = true;
+    },
+    displayBtnClicked: (state) => {
+      state.displayBtnClicked = true;
     },
   },
   extraReducers: (builder) => {
@@ -81,5 +99,11 @@ const fetchStateSlice = createSlice({
   },
 });
 
-export const { isFetched, isFetching, fetchUnload } = fetchStateSlice.actions;
+export const {
+  isFetched,
+  isFetching,
+  fetchUnload,
+  fetchDisplay,
+  displayBtnClicked,
+} = fetchStateSlice.actions;
 export default fetchStateSlice.reducer;
