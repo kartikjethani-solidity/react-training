@@ -25,7 +25,6 @@ export default function ProductCard() {
           {items.map((item) => (
             <MDBCol key={item.id} size="md">
               <MDBCard>
-                <MDBCardImage src="item.img" position="top" alt="..." />
                 <MDBCardBody>
                   <MDBCardTitle>{item.title}</MDBCardTitle>
                   <MDBCardText>{item.price}</MDBCardText>
