@@ -18,8 +18,6 @@ export default function ProductCard() {
   const items = useSelector((state: RootState) => state.allCart.items);
   const dispatch = useDispatch();
 
-  // store mein jo bhi name de rhe reducers ka uska use kr skte hain
-
   return (
     <div className="m-2">
       <MDBContainer>
@@ -31,7 +29,9 @@ export default function ProductCard() {
                 <MDBCardBody>
                   <MDBCardTitle>{item.title}</MDBCardTitle>
                   <MDBCardText>{item.price}</MDBCardText>
-                  <MDBBtn onClick={() => dispatch(addToCart(item))}>Add to cart</MDBBtn>
+                  <MDBBtn onClick={() => dispatch(addToCart(item))}>
+                    Add to cart
+                  </MDBBtn>
                 </MDBCardBody>
               </MDBCard>
             </MDBCol>
