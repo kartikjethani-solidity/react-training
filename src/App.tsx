@@ -84,7 +84,7 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <Modal title={"shopping krlooooooo"} />
+        <Modal title={"shopping shopping!!!!"} />
         <Routes>
           <Route path="/" element={<ProductListing />} />
           <Route path="/product/:productId" element={<ProductDetails />} />
