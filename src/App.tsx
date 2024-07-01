@@ -1,90 +1,74 @@
-import { useEffect, useState } from "react";
+// import "./App.css";
+// import HorizontalMovingDiv from "./RTKnewImplementation/components/platform";
+// // import Counter from "./components/counter";
+
+// export const App: React.FC = () => {
+//   return (
+//     <>
+//       {/* <div className="container">
+//         <div className="larger bg-gray-300 h-24 w-64">Larger Div</div>
+//         <div className="smaller bg-gray-400 h-12 w-48 mt-4 hidden">
+//           Smaller Div
+//         </div>
+//       </div>
+//       <button
+//         id="moveButton"
+//         className="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+//       >
+//         Move Smaller Div
+//       </button> */}
+//       {/* <HorizontalMovingDiv /> */}
+
+//     </>
+//   );
+// };
+
+// export default App;
+// src/App.tsx
+import React, { useRef } from "react";
 import "./App.css";
-import { Profile } from "./components/profile";
-import { User } from "./types/user";
-import { H1 } from "./components/h1";
-import { UserListing } from "./components/user-listing";
-import { Modal } from "./components/modal";
-import { LoginForm } from "./components/login-form";
+import type { RootState } from "./RTKnewImplementation/redux-toolkit-store/redux-toolkit.store";
+import {
+  isMovingTowardsCharacter,
+  isHoveringBelowTheCharacter,
+} from "./RTKnewImplementation/redux-toolkit-store/slices/platform.slice";
+import { useSelector, useDispatch } from "react-redux";
+import BigComponent from "./RTKnewImplementation/components/BigComponent";
+import ButtonsTocall from "./RTKnewImplementation/components/buttons";
+import HorizontalMovingDiv from "./RTKnewImplementation/components/platform";
+//--------------
+import { Suspense } from "react";
+import { Canvas } from "@react-three/fiber";
+import { Environment } from "@react-three/drei";
 
-function App() {
-  const signIn = () => {
-    // api call to sign the user in which returns true or false
-    const user = {
-      isLoggedIn: true,
-      name: "Kartik",
-      id: 1,
-      email: "kj@gmail.com",
-    };
+//--------------
+import { OrbitControls, Loader } from "@react-three/drei";
+import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
+import { useLoader } from "@react-three/fiber";
+import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader";
 
-    // useReducer
+const Model: React.FC = () => {
+  const gltfLoader = new GLTFLoader();
+  const dracoLoader = new DRACOLoader(); // Create a DRACOLoader instance
 
-    setLoggedIn(user.isLoggedIn);
-    setUser(user);
-  };
+  gltfLoader.setDRACOLoader(dracoLoader); // Pass DRACOLoader instance to GLTFLoader
 
-  const users = [
-    { isLoggedIn: true, name: "Kartik", id: 1, email: "kj@gmail.com" },
-    {
-      isLoggedIn: false,
-      name: "Shivansh",
-      id: 1,
-      email: "shivansh@gmail.com",
-    },
-    { isLoggedIn: true, name: "Kamya", id: 1, email: "kamya@gmail.com" },
-  ];
-  // STATE
-  const [isLoggedIn, setLoggedIn] = useState<boolean>(false);
-  const [user, setUser] = useState<User>();
-  const myClassName = isLoggedIn ? "a" : "b";
+  const gltf = useLoader(GLTFLoader, "./platform.gltf");
+  return <primitive object={gltf.scene} />;
+};
 
+const App: React.FC = () => {
   return (
-    <Modal title="Login Modal">
-      <LoginForm>
-        <Modal title="Edit Profile Pic">
-          <h1></h1>
-        </Modal>
-      </LoginForm>
-    </Modal>
+    <>
+      <BigComponent />
+      {/* <Canvas>
+        <OrbitControls />
+        <Suspense fallback={null}>
+          <Model />
+        </Suspense>
+      </Canvas> */}
+    </>
   );
-
-  // return (
-  //   <div className="App">
-  //     {user ? (
-  //       <Profile
-  //         user={user}
-  //         clickHandler={() => {}}
-  //         // address={{
-  //         //   firstLine: "Corenthum",
-  //         //   city: "Noida",
-  //         //   state: "UP",
-  //         // }}
-  //       />
-  //     ) : (
-  //       <button onClick={signIn}>Sign In</button>
-  //     )}
-
-  //     <div className={myClassName}>Hello</div>
-
-  //     {/* <Profile
-  //       email="shivansh@abc.com"
-  //       id={2}
-  //       name="Shivansh"
-  //       address={{
-  //         firstLine: "Corenthum",
-  //         city: "Noida",
-  //         state: "UP",
-  //       }}
-  //     /> */}
-
-  //     <div style={{ marginTop: "100px" }}>
-  //       <H1 heading="List of all users" />
-  //       <div style={{ marginTop: "20px" }}>
-  //         <UserListing />
-  //       </div>
-  //     </div>
-  //   </div>
-  // );
-}
+};
 
 export default App;

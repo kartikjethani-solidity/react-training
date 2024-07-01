@@ -1,22 +1,30 @@
 {
   "users": [
     {
-      "id": "1",
-      "isLoggedIn": true,
-      "name": "Kartik Jethani",
-      "email": "kj@gmail.com"
+      "id": 1,
+      "username": "john_doe",
+      "email": "john@example.com",
+      "age": 28
     },
     {
-      "id": "2",
-      "isLoggedIn": false,
-      "name": "Shivansh",
-      "email": "shivansh@gmail.com"
+      "id": 2,
+      "username": "jane_smith",
+      "email": "jane@example.com",
+      "age": 35
+    }
+  ],
+  "posts": [
+    {
+      "id": 1,
+      "title": "Hello, World!",
+      "content": "This is my first post.",
+      "author_id": 1
     },
     {
-      "id": "3",
-      "isLoggedIn": true,
-      "name": "Kamya",
-      "email": "kamya@gmail.com"
+      "id": 2,
+      "title": "An Exciting Adventure",
+      "content": "Today I went on a hike.",
+      "author_id": 2
     }
   ]
 }
