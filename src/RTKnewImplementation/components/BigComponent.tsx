@@ -173,23 +173,21 @@ const BigComponent: React.FC<PropsWithChildren<{}>> = ({ children }) => {
         <div className="w-1/3">
           <div className="m-4  relative left-0 bottom-0 grid grid-cols-1gap-4  ">
             <div
-              className={`bg-red-300 w-20  h-10 mt-4 hover:bg-pink-200 duration-300 border-b-2 border-transparent  `}
+              className={`bg-red-300 w-20 h-10 mt-2   px-4 py-2 rounded-lg `}
             >
               call
             </div>
             <div
-              className={`bg-yellow-300 w-20 h-10 mt-2 hover:bg-yellow-200 duration-300 border-b-2 border-transparent hover:border-yellow-700 hover:shadow-lg px-4 py-2 rounded-lg `}
+              className={`bg-yellow-300 w-20 h-10 mt-2 px-4  py-2 rounded-lg `}
             >
               send
             </div>
             <div
-              className={`bg-blue-300 w-20 h-10 mt-2  hover:bg-blue-200 duration-300 border-b-2 border-transparent hover:border-blue-700 hover:shadow-lg px-4 py-2 rounded-lg `}
+              className={`bg-blue-300 w-20 h-10 mt-2   px-4 py-2 rounded-lg `}
             >
               Fetch
             </div>
-            <div
-              className={`bg-green-300 w-20 h-10 mt-2  hover:bg-green-200 duration-300 border-b-2 border-transparent hover:border-green-600 hover:shadow-lg px-4 py-2 rounded-lg`}
-            >
+            <div className={`bg-green-300 w-20 h-10 mt-2 px-4 py-2 rounded-lg`}>
               Display
             </div>
           </div>
@@ -201,28 +199,37 @@ const BigComponent: React.FC<PropsWithChildren<{}>> = ({ children }) => {
           <div className="w-full h-full bg-gray-300 shadow-lg rounded-lg overflow-hidden flex flex-col items-center justify-start p-6">
             {/* Message */}
             <p className="text-gray-800 text-xl font-semibold mb-4">
-              {!fetchStatus.isFetched
-                ? !fetchStatus.fetchBtnClicked
-                  ? platformStatus.status
-                  : fetchStatus.fetchMsg
-                : fetchStatus.fetchMsg}
+              {!fetchStatus.displayBtnClicked &&
+                (!fetchStatus.isFetched
+                  ? !fetchStatus.fetchBtnClicked
+                    ? platformStatus.status
+                    : fetchStatus.fetchMsg
+                  : fetchStatus.fetchMsg)}
             </p>
 
             {/* User List */}
             {fetchStatus.displayBtnClicked && fetchStatus.isFetched && (
               <ul className="w-full space-y-4 mt-4">
-                {fetchStatus.fetchData.map((user) => (
-                  <li
-                    key={user.id}
-                    className="bg-white p-4 rounded-lg shadow-sm flex flex-col items-center"
-                  >
-                    <p className="text-lg font-medium text-gray-900">
-                      {user.username}
-                    </p>
-                    <p className="text-gray-700">{user.email}</p>
-                    <p className="text-gray-500 text-sm">Age: {user.age}</p>
-                  </li>
-                ))}
+                <li
+                  key={fetchStatus.fetchData.id}
+                  className="bg-white p-4 rounded-lg shadow-sm flex flex-col items-center"
+                >
+                  <p className="text-lg font-medium text-gray-900">
+                    {fetchStatus.fetchData.name}
+                  </p>
+                  <p className="text-gray-700">
+                    {fetchStatus.fetchData.category}
+                  </p>
+
+                  <p className="text-gray-500 text-sm">
+                    {fetchStatus.fetchData.description}
+                  </p>
+                  <p className="text-gray-500 text-sm">
+                    {fetchStatus.fetchData.image && (
+                      <img src={fetchStatus.fetchData.image} alt="image" />
+                    )}
+                  </p>
+                </li>
               </ul>
             )}
           </div>

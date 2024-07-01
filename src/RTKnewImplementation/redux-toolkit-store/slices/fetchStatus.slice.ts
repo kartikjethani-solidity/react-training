@@ -1,17 +1,18 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 
 interface Users {
-  id: string;
-  username: string;
-  email: string;
-  age: number;
+  id: number;
+  name: string;
+  category: string;
+  description: string;
+  image: string;
 }
 
 interface FetchStatusState {
   isFetched: boolean;
   fetchBtnClicked: boolean;
   fetchMsg: string;
-  fetchData: Users[];
+  fetchData: Users;
   fetchDisplay: boolean;
   displayBtnClicked: boolean;
 }
@@ -20,7 +21,13 @@ const initialState: FetchStatusState = {
   isFetched: false,
   fetchBtnClicked: false,
   fetchMsg: "fetch to display",
-  fetchData: [],
+  fetchData: {
+    id: 0,
+    name: "",
+    category: "",
+    description: "",
+    image: "",
+  },
   fetchDisplay: false,
   displayBtnClicked: false,
 };
@@ -29,11 +36,13 @@ const initialState: FetchStatusState = {
 export const fetchUsers = createAsyncThunk(
   "fetchState/fetchUsers",
   async () => {
-    const response = await fetch("http://localhost:3000/users");
+    const response = await fetch(
+      "https://localhost:5128/api/Product/product/1"
+    );
     if (!response.ok) {
       throw new Error("Network response was not ok");
     }
-    const data: Users[] = await response.json();
+    const data: Users = await response.json();
 
     await new Promise((resolve) => setTimeout(resolve, 3000));
 
@@ -48,7 +57,7 @@ const fetchStateSlice = createSlice({
     isFetched: (state) => {
       state.isFetched = true;
       state.fetchBtnClicked = true;
-      state.fetchMsg = "Msg fetched! Here is your content";
+      state.fetchMsg = "Msg fetched!";
       state.fetchDisplay = false;
     },
     isFetching: (state) => {
@@ -82,15 +91,13 @@ const fetchStateSlice = createSlice({
         state.fetchBtnClicked = true;
         state.fetchMsg = "fetch in progress ....";
       })
-      .addCase(
-        fetchUsers.fulfilled,
-        (state, action: PayloadAction<Users[]>) => {
-          state.isFetched = true;
-          state.fetchBtnClicked = true;
-          state.fetchMsg = "Msg fetched! Here is your content";
-          state.fetchData = action.payload;
-        }
-      )
+      .addCase(fetchUsers.fulfilled, (state, action: PayloadAction<Users>) => {
+        state.isFetched = true;
+        state.fetchBtnClicked = true;
+        state.fetchMsg = "Msg fetched! Green button to display";
+        state.fetchData = action.payload;
+        console.log(state.fetchData);
+      })
       .addCase(fetchUsers.rejected, (state) => {
         state.isFetched = false;
         state.fetchBtnClicked = true;
