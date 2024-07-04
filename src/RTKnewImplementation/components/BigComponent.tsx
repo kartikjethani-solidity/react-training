@@ -147,7 +147,30 @@ const BigComponent: React.FC<PropsWithChildren<{}>> = ({ children }) => {
           {/* First Card */}
           <div className="w-full h-2/3 mb-4 bg-gray-100 shadow-lg rounded-lg overflow-hidden flex items-center justify-center">
             {/* Content for First Card */}
-            character render
+            {fetchStatus.displayBtnClicked && fetchStatus.isFetched && (
+              <ul className="w-full space-y-4 mt-4">
+                <li
+                  key={fetchStatus.fetchData.id}
+                  className="bg-white p-4 rounded-lg shadow-sm flex flex-col items-center"
+                >
+                  <p className="text-lg font-medium text-gray-900">
+                    {fetchStatus.fetchData.name}
+                  </p>
+                  <p className="text-gray-700">
+                    {fetchStatus.fetchData.category}
+                  </p>
+
+                  <p className="text-gray-500 text-sm">
+                    {fetchStatus.fetchData.description}
+                  </p>
+                  <p className="text-gray-500 text-sm">
+                    {fetchStatus.fetchData.image && (
+                      <img src={fetchStatus.fetchData.image} alt="image" />
+                    )}
+                  </p>
+                </li>
+              </ul>
+            )}
           </div>
           {/* Second Card */}
           <div
