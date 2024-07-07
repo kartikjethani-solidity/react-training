@@ -9,14 +9,14 @@ const Products = () => {
 
   return (
     <Wrapper className="section">
-      <h2 className="common-heading">Our Services</h2>
+      <h2 className="common-heading">Products Listings</h2>
       <div className="container grid grid-three-column">
-        {services.map((curElem) => {
-          const { id, name, image, description } = curElem;
+        {services.map((elementFromApi) => {
+          const { id, name, addImage, description } = elementFromApi;
           return (
             <div key={id} className="card">
               <figure>
-                <img src={image} alt={name} />
+                <img src={addImage} alt={name} />
               </figure>
               <div className="card-data">
                 <h3>{name}</h3>
